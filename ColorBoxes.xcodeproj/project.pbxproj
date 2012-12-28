@@ -1,0 +1,376 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		692414E0168CE5BC00046D84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 692414DF168CE5BC00046D84 /* Foundation.framework */; };
+		692414E2168CE5BC00046D84 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 692414E1168CE5BC00046D84 /* Cocoa.framework */; };
+		692414E8168CE5BC00046D84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 692414E6168CE5BC00046D84 /* InfoPlist.strings */; };
+		69241509168CE79300046D84 /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69241507168CE79300046D84 /* GameEngine.cpp */; };
+		6924150A168CE79B00046D84 /* SDLMain.mm in Sources */ = {isa = PBXBuildFile; fileRef = 69241506168CE77F00046D84 /* SDLMain.mm */; };
+		6924150D168CE84400046D84 /* ColorBoxesEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6924150B168CE84300046D84 /* ColorBoxesEngine.cpp */; };
+		69241515168CFAD300046D84 /* Wall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69241513168CFAD300046D84 /* Wall.cpp */; };
+		6924151C168D20CD00046D84 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6924151B168D20CD00046D84 /* Utilities.cpp */; };
+		6924151E168D29A000046D84 /* SDL_gfx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6924151D168D29A000046D84 /* SDL_gfx.framework */; };
+		69241520168D2A7C00046D84 /* libBox2D.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6924151F168D2A7C00046D84 /* libBox2D.2.1.0.dylib */; };
+		69241525168D2F6300046D84 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69241524168D2F6300046D84 /* SDL.framework */; };
+		69F3133D168D699000F113DC /* SDL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69241524168D2F6300046D84 /* SDL.framework */; };
+		69F3133E168D699300F113DC /* SDL_gfx.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6924151D168D29A000046D84 /* SDL_gfx.framework */; };
+		69F3133F168D699500F113DC /* libBox2D.2.1.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6924151F168D2A7C00046D84 /* libBox2D.2.1.0.dylib */; };
+		69F31345168D6BDA00F113DC /* SDL_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F31344168D6BDA00F113DC /* SDL_ttf.framework */; };
+		69F31346168D6BF500F113DC /* SDL_ttf.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69F31344168D6BDA00F113DC /* SDL_ttf.framework */; };
+		69F31348168D6C8700F113DC /* Arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69F31347168D6C8700F113DC /* Arial.ttf */; };
+		69F3134D168D94C600F113DC /* ColorBoxes.icns in Resources */ = {isa = PBXBuildFile; fileRef = 69F3134C168D94C600F113DC /* ColorBoxes.icns */; };
+		69F31350168D97CE00F113DC /* Box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F3134E168D97CD00F113DC /* Box.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		692414D9168CE5BC00046D84 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				69F3133D168D699000F113DC /* SDL.framework in CopyFiles */,
+				69F3133E168D699300F113DC /* SDL_gfx.framework in CopyFiles */,
+				69F31346168D6BF500F113DC /* SDL_ttf.framework in CopyFiles */,
+				69F3133F168D699500F113DC /* libBox2D.2.1.0.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		692414DB168CE5BC00046D84 /* ColorBoxes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorBoxes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		692414DF168CE5BC00046D84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		692414E1168CE5BC00046D84 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		692414E5168CE5BC00046D84 /* ColorBoxes-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ColorBoxes-Info.plist"; sourceTree = "<group>"; };
+		692414E7168CE5BC00046D84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		692414EB168CE5BC00046D84 /* ColorBoxes-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ColorBoxes-Prefix.pch"; sourceTree = "<group>"; };
+		69241505168CE77F00046D84 /* SDLMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDLMain.h; sourceTree = "<group>"; };
+		69241506168CE77F00046D84 /* SDLMain.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SDLMain.mm; sourceTree = "<group>"; };
+		69241507168CE79300046D84 /* GameEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEngine.cpp; sourceTree = "<group>"; };
+		69241508168CE79300046D84 /* GameEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngine.h; sourceTree = "<group>"; };
+		6924150B168CE84300046D84 /* ColorBoxesEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorBoxesEngine.cpp; sourceTree = "<group>"; };
+		6924150C168CE84300046D84 /* ColorBoxesEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorBoxesEngine.h; sourceTree = "<group>"; };
+		69241513168CFAD300046D84 /* Wall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wall.cpp; sourceTree = "<group>"; };
+		69241514168CFAD300046D84 /* Wall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wall.h; sourceTree = "<group>"; };
+		6924151B168D20CD00046D84 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
+		6924151D168D29A000046D84 /* SDL_gfx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_gfx.framework; path = /opt/local/Library/Frameworks/SDL_gfx.framework; sourceTree = "<absolute>"; };
+		6924151F168D2A7C00046D84 /* libBox2D.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBox2D.2.1.0.dylib; path = /opt/local/lib/libBox2D.2.1.0.dylib; sourceTree = "<absolute>"; };
+		69241524168D2F6300046D84 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = /opt/local/Library/Frameworks/SDL.framework; sourceTree = "<absolute>"; };
+		69F31344168D6BDA00F113DC /* SDL_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_ttf.framework; path = /opt/local/Library/Frameworks/SDL_ttf.framework; sourceTree = "<absolute>"; };
+		69F31347168D6C8700F113DC /* Arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Arial.ttf; sourceTree = "<group>"; };
+		69F3134C168D94C600F113DC /* ColorBoxes.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ColorBoxes.icns; sourceTree = "<group>"; };
+		69F3134E168D97CD00F113DC /* Box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Box.cpp; sourceTree = "<group>"; };
+		69F3134F168D97CD00F113DC /* Box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box.h; sourceTree = "<group>"; };
+		69F31356168D985F00F113DC /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		692414D7168CE5BC00046D84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69241520168D2A7C00046D84 /* libBox2D.2.1.0.dylib in Frameworks */,
+				692414E0168CE5BC00046D84 /* Foundation.framework in Frameworks */,
+				692414E2168CE5BC00046D84 /* Cocoa.framework in Frameworks */,
+				69241525168D2F6300046D84 /* SDL.framework in Frameworks */,
+				6924151E168D29A000046D84 /* SDL_gfx.framework in Frameworks */,
+				69F31345168D6BDA00F113DC /* SDL_ttf.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		692414CF168CE5BB00046D84 = {
+			isa = PBXGroup;
+			children = (
+				692414E3168CE5BC00046D84 /* ColorBoxes */,
+				692414DE168CE5BC00046D84 /* Frameworks */,
+				692414DC168CE5BC00046D84 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		692414DC168CE5BC00046D84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				692414DB168CE5BC00046D84 /* ColorBoxes.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		692414DE168CE5BC00046D84 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6924151F168D2A7C00046D84 /* libBox2D.2.1.0.dylib */,
+				69241524168D2F6300046D84 /* SDL.framework */,
+				6924151D168D29A000046D84 /* SDL_gfx.framework */,
+				69F31344168D6BDA00F113DC /* SDL_ttf.framework */,
+				692414DF168CE5BC00046D84 /* Foundation.framework */,
+				692414E1168CE5BC00046D84 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		692414E3168CE5BC00046D84 /* ColorBoxes */ = {
+			isa = PBXGroup;
+			children = (
+				69241505168CE77F00046D84 /* SDLMain.h */,
+				69241506168CE77F00046D84 /* SDLMain.mm */,
+				692414F1168CE5BD00046D84 /* Game */,
+				692414E4168CE5BC00046D84 /* Supporting Files */,
+			);
+			path = ColorBoxes;
+			sourceTree = "<group>";
+		};
+		692414E4168CE5BC00046D84 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				69F31347168D6C8700F113DC /* Arial.ttf */,
+				69F3134C168D94C600F113DC /* ColorBoxes.icns */,
+				692414E5168CE5BC00046D84 /* ColorBoxes-Info.plist */,
+				692414E6168CE5BC00046D84 /* InfoPlist.strings */,
+				692414EB168CE5BC00046D84 /* ColorBoxes-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		692414F1168CE5BD00046D84 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				69241508168CE79300046D84 /* GameEngine.h */,
+				69241507168CE79300046D84 /* GameEngine.cpp */,
+				6924150C168CE84300046D84 /* ColorBoxesEngine.h */,
+				6924150B168CE84300046D84 /* ColorBoxesEngine.cpp */,
+				69F3134F168D97CD00F113DC /* Box.h */,
+				69F3134E168D97CD00F113DC /* Box.cpp */,
+				69241514168CFAD300046D84 /* Wall.h */,
+				69241513168CFAD300046D84 /* Wall.cpp */,
+				69F31356168D985F00F113DC /* Utilities.h */,
+				6924151B168D20CD00046D84 /* Utilities.cpp */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		692414DA168CE5BC00046D84 /* ColorBoxes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 692414F7168CE5BD00046D84 /* Build configuration list for PBXNativeTarget "ColorBoxes" */;
+			buildPhases = (
+				692414D6168CE5BC00046D84 /* Sources */,
+				692414D7168CE5BC00046D84 /* Frameworks */,
+				692414D8168CE5BC00046D84 /* Resources */,
+				692414D9168CE5BC00046D84 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ColorBoxes;
+			productName = ColorBoxes;
+			productReference = 692414DB168CE5BC00046D84 /* ColorBoxes.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		692414D1168CE5BC00046D84 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Jay Bromley";
+			};
+			buildConfigurationList = 692414D4168CE5BC00046D84 /* Build configuration list for PBXProject "ColorBoxes" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 692414CF168CE5BB00046D84;
+			productRefGroup = 692414DC168CE5BC00046D84 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				692414DA168CE5BC00046D84 /* ColorBoxes */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		692414D8168CE5BC00046D84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				692414E8168CE5BC00046D84 /* InfoPlist.strings in Resources */,
+				69F31348168D6C8700F113DC /* Arial.ttf in Resources */,
+				69F3134D168D94C600F113DC /* ColorBoxes.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		692414D6168CE5BC00046D84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69241509168CE79300046D84 /* GameEngine.cpp in Sources */,
+				6924150A168CE79B00046D84 /* SDLMain.mm in Sources */,
+				6924150D168CE84400046D84 /* ColorBoxesEngine.cpp in Sources */,
+				69241515168CFAD300046D84 /* Wall.cpp in Sources */,
+				6924151C168D20CD00046D84 /* Utilities.cpp in Sources */,
+				69F31350168D97CE00F113DC /* Box.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		692414E6168CE5BC00046D84 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				692414E7168CE5BC00046D84 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		692414F5168CE5BD00046D84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"${SRCROOT}\"",
+					"\"${SRCROOT}/${PROJECT_NAME}/SDL.framework/Headers\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		692414F6168CE5BD00046D84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"${SRCROOT}\"",
+					"\"${SRCROOT}/${PROJECT_NAME}/SDL.framework/Headers\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		692414F8168CE5BD00046D84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ColorBoxes\"",
+					/opt/local/Library/Frameworks,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ColorBoxes/ColorBoxes-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${SRCROOT}\"",
+					"\"${SRCROOT}/${PROJECT_NAME}/SDL.framework/Headers\"",
+					/opt/local/include,
+				);
+				INFOPLIST_FILE = "ColorBoxes/ColorBoxes-Info.plist";
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		692414F9168CE5BD00046D84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ColorBoxes\"",
+					/opt/local/Library/Frameworks,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ColorBoxes/ColorBoxes-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${SRCROOT}\"",
+					"\"${SRCROOT}/${PROJECT_NAME}/SDL.framework/Headers\"",
+					/opt/local/include,
+				);
+				INFOPLIST_FILE = "ColorBoxes/ColorBoxes-Info.plist";
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		692414D4168CE5BC00046D84 /* Build configuration list for PBXProject "ColorBoxes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				692414F5168CE5BD00046D84 /* Debug */,
+				692414F6168CE5BD00046D84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		692414F7168CE5BD00046D84 /* Build configuration list for PBXNativeTarget "ColorBoxes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				692414F8168CE5BD00046D84 /* Debug */,
+				692414F9168CE5BD00046D84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 692414D1168CE5BC00046D84 /* Project object */;
+}
