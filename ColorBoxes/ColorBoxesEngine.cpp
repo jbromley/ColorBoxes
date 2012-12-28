@@ -136,6 +136,15 @@ void
 ColorBoxesEngine::keyDown(int keyCode)
 {
     switch (keyCode) {
+        case SDLK_b:
+            if (backgroundColor() == 0x000000ff) {
+                setBackgroundColor(0xffffffff);
+                textColor_ = {0, 0, 0};
+            } else {
+                setBackgroundColor(0x000000ff);
+                textColor_ = {255, 255, 255};
+            }
+            break;
         case SDLK_s:
             renderStats_ = !renderStats_;
             std::cout << "render statistics = " << (renderStats_ ? "true" : "false") << std::endl;
