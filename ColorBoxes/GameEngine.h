@@ -2,7 +2,7 @@
 #define GAMEENGINE_H
 
 #include <string> 
-#include "SDL.h"
+#include <SDL/SDL.h>
  
 /** The base engine class. */
 class GameEngine  
