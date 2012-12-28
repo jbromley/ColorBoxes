@@ -13,8 +13,10 @@
 #include "ColorBoxesEngine.h"
 
 
-Box::Box(float x, float y)
-: w_(randomFloat(2.0f, 16.0f)), h_(randomFloat(4.0f, 16.0f))
+Box::Box(float x, float y, ColorBoxesEngine* engine)
+: w_(randomFloat(2.0f, 16.0f)),
+  h_(randomFloat(4.0f, 16.0f)),
+  engine_(engine)
 {
     borderColor_ = randomRGBColor();
     fillColor_ = lightenColor(borderColor_, 0.5);
@@ -34,8 +36,7 @@ Box::update(long timeElapsed)
 void
 Box::render()
 {
-    ColorBoxesEngine* e = ColorBoxesEngine::instance();
-    SDL_Surface* surface  = e->surface();
+    SDL_Surface* surface  = engine_->surface();
     
     b2Vec2 worldCenter = body_->GetPosition();
     float32 theta = body_->GetAngle();
@@ -49,7 +50,7 @@ Box::render()
     const b2Fixture* fixture = body_->GetFixtureList();
     const b2PolygonShape* polygon = dynamic_cast<const b2PolygonShape*>(fixture->GetShape());
     for (int i = 0; i < polygon->m_vertexCount; ++i) {
-        b2Vec2 v = e->coordWorldToPixels(b2Mul(t, polygon->m_vertices[i]));
+        b2Vec2 v = engine_->coordWorldToPixels(b2Mul(t, polygon->m_vertices[i]));
         vx[i] = roundToInt(v.x);
         vy[i] = roundToInt(v.y);
     }
@@ -61,11 +62,10 @@ Box::render()
 bool
 Box::done()
 {
-    ColorBoxesEngine* e = ColorBoxesEngine::instance();
     b2Vec2 worldPos = body_->GetPosition();
-    b2Vec2 pixelPos = e->coordWorldToPixels(worldPos);
+    b2Vec2 pixelPos = engine_->coordWorldToPixels(worldPos);
     
-    if (pixelPos.y > e->height() + w_ * h_) {
+    if (pixelPos.y > engine_->height() + w_ * h_) {
         return true;
     }
     
@@ -75,16 +75,16 @@ Box::done()
 void
 Box::makeBody(const b2Vec2& center, float width, float height)
 {
-    ColorBoxesEngine* e = ColorBoxesEngine::instance();
-    b2World* world = e->world();
+    b2World* world = engine_->world();
     
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
-    bodyDef.position = e->coordPixelsToWorld(center);
+    bodyDef.position = engine_->coordPixelsToWorld(center);
     body_ = world->CreateBody(&bodyDef);
     
     b2PolygonShape box;
-    box.SetAsBox(e->scalarPixelsToWorld(width), e->scalarPixelsToWorld(height));
+    box.SetAsBox(engine_->scalarPixelsToWorld(width),
+                 engine_->scalarPixelsToWorld(height));
     
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &box;
@@ -103,6 +103,6 @@ Box::makeBody(const b2Vec2& center, float width, float height)
 void
 Box::killBody()
 {
-    b2World* world = ColorBoxesEngine::instance()->world();
+    b2World* world = engine_->world();
     world->DestroyBody(body_);
 }

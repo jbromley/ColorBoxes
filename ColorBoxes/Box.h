@@ -14,10 +14,12 @@
 #include <SDL/SDL.h>
 
 
+class ColorBoxesEngine;
+
 class Box
 {
 public:
-    Box(float x, float y);
+    Box(float x, float y, ColorBoxesEngine* engine);
     ~Box();
     
     void update(long timeElapsed);
@@ -35,6 +37,8 @@ private:
     
     Uint32 fillColor_;
     Uint32 borderColor_;
+    
+    ColorBoxesEngine* engine_;
 };
 
 #endif /* defined(__ColorBoxes__Box__) */

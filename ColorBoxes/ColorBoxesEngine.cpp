@@ -76,11 +76,14 @@ ColorBoxesEngine::initializeData()
 {
     setTitle("Box Fall");
 
-    walls_.push_back(new Wall(0.0f, 0.0f, 5.0f, height() - 20.0f));
-    walls_.push_back(new Wall(width() - 6.0f, 0.0f, width() - 1.0f, height() - 20.0f));
-    walls_.push_back(new Wall(width() / 16.0f, height() - 15.0f, 6.0f * width() / 16.0f, 5.0));
-    walls_.push_back(new Wall(9.0f * width() / 16.0f, height() - 15.0f, 6.0f * width() / 16.0f, 5.0));
-    
+    walls_.push_back(new Wall(0.0f, 0.0f,
+                              5.0f, height() - 20.0f, this));
+    walls_.push_back(new Wall(width() - 6.0f, 0.0f,
+                              width() - 1.0f, height() - 20.0f, this));
+    walls_.push_back(new Wall(width() / 16.0f, height() - 15.0f,
+                              6.0f * width() / 16.0f, 5.0, this));
+    walls_.push_back(new Wall(9.0f * width() / 16.0f, height() - 15.0f,
+                              6.0f * width() / 16.0f, 5.0, this));
 }
 
 void
@@ -95,7 +98,7 @@ ColorBoxesEngine::update(long elapsedTime)
         int x;
         int y;
         SDL_GetMouseState(&x, &y);
-        boxes_.push_back(new Box(x, y));
+        boxes_.push_back(new Box(x, y, this));
     }
     
     // Clear out any boxes that are off the screen.
@@ -106,7 +109,7 @@ ColorBoxesEngine::update(long elapsedTime)
 }
 
 void
-ColorBoxesEngine::render(SDL_Surface* destSurface)
+ColorBoxesEngine::render()
 {
     for_each(walls_.begin(), walls_.end(), std::mem_fun(&Wall::render));
     for_each(boxes_.begin(), boxes_.end(), std::mem_fun(&Box::render));

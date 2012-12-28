@@ -12,11 +12,12 @@
 #include <iostream>
 
 class b2Body;
+class ColorBoxesEngine;
 
 class Wall
 {
 public:
-    Wall(float x, float y, float width, float height);
+    Wall(float x, float y, float width, float height, ColorBoxesEngine* engine);
     ~Wall();
     
     void render();
@@ -31,6 +32,8 @@ private:
     Uint32 fillColor_;
     
     b2Body* body_;
+    
+    ColorBoxesEngine* engine_;
 };
 
 #endif /* defined(__ColorBoxes__Wall__) */

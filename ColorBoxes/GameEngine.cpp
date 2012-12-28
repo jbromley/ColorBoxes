@@ -151,7 +151,7 @@ void GameEngine::doRender()
     }
     
     SDL_FillRect(screen_, 0, backgroundColor_);
-    render(surface());
+    render();
     SDL_Flip(screen_);
 }
 

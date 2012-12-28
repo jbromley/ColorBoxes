@@ -28,9 +28,8 @@ public:
     
     /**
      * Does all game rendering.
-     * @param destSurface The main screen surface.
      */
-    virtual void render(SDL_Surface* destSurface) {}
+    virtual void render() {}
     
     /**
      * Cleans up all allocated data and resources.

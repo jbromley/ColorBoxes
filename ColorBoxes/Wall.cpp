@@ -21,16 +21,15 @@
  * @param w the wall's width in pixels
  * @param h the wall's width in pixels
  */
-Wall::Wall(float x, float y, float w, float h)
-: x_(x), y_(y), w_(w), h_(h)
+Wall::Wall(float x, float y, float w, float h, ColorBoxesEngine* engine)
+: x_(x), y_(y), w_(w), h_(h), engine_(engine)
 {
-    ColorBoxesEngine* e = ColorBoxesEngine::instance();
-    b2World* world = e->world();
+    b2World* world = engine_->world();
     
     // Set up for Box2D.
-    b2Vec2 center = e->coordPixelsToWorld(x + w / 2, y + h / 2);
-    float horizExtent = e->scalarPixelsToWorld(w / 2.0f);
-    float vertExtent = e->scalarPixelsToWorld(h / 2.0f);
+    b2Vec2 center = engine_->coordPixelsToWorld(x + w / 2, y + h / 2);
+    float horizExtent = engine_->scalarPixelsToWorld(w / 2.0f);
+    float vertExtent = engine_->scalarPixelsToWorld(h / 2.0f);
     
     b2BodyDef bodyDef;
     bodyDef.position = center;
@@ -55,7 +54,7 @@ Wall::~Wall()
 void
 Wall::render()
 {
-    SDL_Surface* surface = ColorBoxesEngine::instance()->surface();
+    SDL_Surface* surface = engine_->surface();
 
     float x2 = x_ + w_ - 1;
     float y2 = y_ + h_ - 1;

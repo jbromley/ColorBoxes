@@ -31,7 +31,7 @@ public:
     
     virtual void initializeData();
     virtual void update(long elapsedTime);
-    virtual void render(SDL_Surface* destSurface);
+    virtual void render();
     virtual void end();
     
     virtual void keyDown(int keyCode);
