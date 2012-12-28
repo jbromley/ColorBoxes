@@ -39,7 +39,7 @@ public:
     virtual void mouseButtonDown(int button, int x, int y, int dx, int dy);
     virtual void mouseButtonUp(int button, int x, int y, int dx, int dy);
     
-     b2World* world();
+    b2World* world();
     b2Vec2 coordWorldToPixels(const b2Vec2& v);
     b2Vec2 coordWorldToPixels(float worldX, float worldY);
     b2Vec2 coordPixelsToWorld(const b2Vec2& v);
