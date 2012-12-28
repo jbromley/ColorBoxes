@@ -26,6 +26,7 @@
 		69F31348168D6C8700F113DC /* Arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69F31347168D6C8700F113DC /* Arial.ttf */; };
 		69F31350168D97CE00F113DC /* Box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F3134E168D97CD00F113DC /* Box.cpp */; };
 		69F3135A168D9C2F00F113DC /* ColorBoxes.icns in Resources */ = {isa = PBXBuildFile; fileRef = 69F31359168D9C2F00F113DC /* ColorBoxes.icns */; };
+		69F3135E168D9F4100F113DC /* README in Resources */ = {isa = PBXBuildFile; fileRef = 69F3135D168D9F4100F113DC /* README */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,6 +70,7 @@
 		69F3134F168D97CD00F113DC /* Box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box.h; sourceTree = "<group>"; };
 		69F31356168D985F00F113DC /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		69F31359168D9C2F00F113DC /* ColorBoxes.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ColorBoxes.icns; sourceTree = "<group>"; };
+		69F3135D168D9F4100F113DC /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		692414E3168CE5BC00046D84 /* ColorBoxes */ = {
 			isa = PBXGroup;
 			children = (
+				69F3135D168D9F4100F113DC /* README */,
 				69241505168CE77F00046D84 /* SDLMain.h */,
 				69241506168CE77F00046D84 /* SDLMain.mm */,
 				692414F1168CE5BD00046D84 /* Game */,
@@ -213,6 +216,7 @@
 				692414E8168CE5BC00046D84 /* InfoPlist.strings in Resources */,
 				69F31348168D6C8700F113DC /* Arial.ttf in Resources */,
 				69F3135A168D9C2F00F113DC /* ColorBoxes.icns in Resources */,
+				69F3135E168D9F4100F113DC /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
