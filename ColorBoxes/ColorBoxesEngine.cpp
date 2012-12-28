@@ -86,9 +86,9 @@ ColorBoxesEngine::initializeData()
 void
 ColorBoxesEngine::update(long elapsedTime)
 {
-    const float32 timeStep = 1.0f / 60.0f;
     const int32 velocityIterations = 6;
     const int32 positionIterations = 2;
+    float32 timeStep = elapsedTime / 1000.0f;
     
     // Create a box if we are in create mode.
     if (createBoxes_) {
