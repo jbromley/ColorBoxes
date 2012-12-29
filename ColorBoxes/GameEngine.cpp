@@ -1,10 +1,19 @@
 #include "GameEngine.h"
 #include <iostream>
 
+
 GameEngine::GameEngine(int width, int height, const std::string& resourcePath)
-: lastTick_(0), quit_(false), minimized_(false), width_(width), height_(height),
-  backgroundColor_(0x000000ff), screen_(0), fpsTickCounter_(0), fpsCounter_(0),
-  currentFps_(0), resourcePath_(resourcePath)
+    : lastTick_(0),
+    quit_(false),
+    minimized_(false),
+    width_(width),
+    height_(height),
+    backgroundColor_(GLColor::black()),
+    screen_(0),
+    fpsTickCounter_(0),
+    fpsCounter_(0),
+    currentFps_(0),
+    resourcePath_(resourcePath)
 {
     // Register SDL_Quit to be called at exit; makes sure things are
     // cleaned up when we quit.
@@ -17,14 +26,40 @@ GameEngine::GameEngine(int width, int height, const std::string& resourcePath)
         exit(EXIT_FAILURE);
     }
     
+    // Set up OpenGL.
+    SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
+    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
+    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
+    SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
+    
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+    SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE, 32);
+    
+    SDL_GL_SetAttribute(SDL_GL_ACCUM_RED_SIZE, 8);
+    SDL_GL_SetAttribute(SDL_GL_ACCUM_GREEN_SIZE, 8);
+    SDL_GL_SetAttribute(SDL_GL_ACCUM_BLUE_SIZE, 8);
+    SDL_GL_SetAttribute(SDL_GL_ACCUM_ALPHA_SIZE, 8);
+    
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 2);
+
     // Attempt to create a window with the specified height and width.
     setSize(width_, height_);
-    
-    // If we fail, return error.
     if (screen_ == NULL) {
         std::cerr << "Unable to set up video: " << SDL_GetError() << std::endl;
         exit(EXIT_FAILURE);
     }
+    
+    GLColor& c = backgroundColor_;
+    glClearColor(c.r, c.g, c.b, c.a);
+    glClearDepth(1.0f);
+    glViewport(0, 0, width, height);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(0.0, width, height, 0.0, 1.0, -1.0);
+    glMatrixMode(GL_MODELVIEW);
+    glEnable(GL_TEXTURE_2D);
+    glLoadIdentity();
 }
 
 /** Destructor. **/
@@ -37,8 +72,8 @@ void GameEngine::setSize(int width, int height)
 {
     width_  = width;
     height_ = height;
-//    screen_ = SDL_SetVideoMode(width, height, 0, SDL_HWSURFACE | SDL_DOUBLEBUF);
-    screen_ = SDL_SetVideoMode(width, height, 0, SDL_SWSURFACE);
+    screen_ = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE | SDL_GL_DOUBLEBUFFER | SDL_OPENGL);
+//    screen_ = SDL_SetVideoMode(width, height, 0, SDL_SWSURFACE);
 }
 
 int GameEngine::init()
@@ -150,9 +185,12 @@ void GameEngine::doRender()
         fpsTickCounter_ = 0;
     }
     
-    SDL_FillRect(screen_, 0, backgroundColor_);
+//    SDL_FillRect(screen_, 0, backgroundColor_);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();
     render();
-    SDL_Flip(screen_);
+//    SDL_Flip(screen_);
+    SDL_GL_SwapBuffers();
 }
 
 void GameEngine::setTitle(const std::string& title)
@@ -184,12 +222,13 @@ GameEngine::height() const
 }
 
 void
-GameEngine::setBackgroundColor(Uint32 backgroundColor)
+GameEngine::setBackgroundColor(const GLColor& backgroundColor)
 {
     backgroundColor_ = backgroundColor;
+    glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
 }
 
-Uint32
+GLColor
 GameEngine::backgroundColor() const
 {
     return backgroundColor_;

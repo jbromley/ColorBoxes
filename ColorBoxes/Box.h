@@ -12,6 +12,7 @@
 #include <iostream>
 #include <Box2D/Box2D.h>
 #include <SDL/SDL.h>
+#include "GLColor.h"
 
 
 class ColorBoxesEngine;
@@ -35,8 +36,8 @@ private:
     
     b2Body* body_;
     
-    Uint32 fillColor_;
-    Uint32 borderColor_;
+    GLColor fillColor_;
+    GLColor borderColor_;
     
     ColorBoxesEngine* engine_;
 };

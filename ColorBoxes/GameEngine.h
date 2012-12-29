@@ -3,7 +3,10 @@
 
 #include <string> 
 #include <SDL/SDL.h>
- 
+#include <OpenGL/gl.h>
+#include <OpengL/glu.h>
+#include "GLColor.h"
+
 /** The base engine class. */
 class GameEngine  
 {
@@ -100,8 +103,8 @@ public:
     SDL_Surface* surface();
     int height() const;
     int width() const;
-    void setBackgroundColor(Uint32 backgroundColor);
-    Uint32 backgroundColor() const;
+    void setBackgroundColor(const GLColor& backgroundColor);
+    GLColor backgroundColor() const;
     int fps() const;
     std::string resourcePath() const;
     void setResourcePath(const std::string& resourcePath);
@@ -130,7 +133,7 @@ private:
     int height_;
     
     /** Background color */
-    Uint32 backgroundColor_;
+    GLColor backgroundColor_;
     
     /** The title of the window */
     std::string title_;

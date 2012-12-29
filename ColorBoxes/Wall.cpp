@@ -42,8 +42,8 @@ Wall::Wall(float x, float y, float w, float h, ColorBoxesEngine* engine)
     body_->SetUserData(this);
     
     // Set up colors.
-    borderColor_ = convertRGBAToColor(255, 0, 255, 255);
-    fillColor_ = lightenColor(borderColor_, 0.5);
+    borderColor_ = GLColor(1.0f, 0.0f, 1.0f, 1.0f);
+    fillColor_ = borderColor_.lighten(0.5f);
 }
 
 Wall::~Wall()
@@ -54,12 +54,25 @@ Wall::~Wall()
 void
 Wall::render()
 {
-    SDL_Surface* surface = engine_->surface();
-
     float x2 = x_ + w_ - 1;
     float y2 = y_ + h_ - 1;
-    SDL_Rect destRect = {static_cast<Sint16>(x_), static_cast<Sint16>(y_),
-        static_cast<Uint16>(w_), static_cast<Uint16>(h_)};
-    SDL_FillRect(surface, &destRect, fillColor_);
-    rectangleColor(surface, x_, y_, x2, y2, borderColor_);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glColor4f(fillColor_.r, fillColor_.g, fillColor_.b, fillColor_.a);
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(x_, y_);
+    glVertex2f(x_, y2);
+    glVertex2f(x2, y2);
+    glVertex2f(x2, y_);
+    glEnd();
+    glDisable(GL_BLEND);
+    
+    glColor4f(borderColor_.r, borderColor_.g, borderColor_.b, borderColor_.a);
+    glBegin(GL_LINE_LOOP);
+    glVertex2f(x_, y_);
+    glVertex2f(x_, y2);
+    glVertex2f(x2, y2);
+    glVertex2f(x2, y_);
+    glEnd();
 }

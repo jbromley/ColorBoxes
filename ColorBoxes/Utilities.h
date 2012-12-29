@@ -17,6 +17,8 @@ T map(T value, T minFrom, T maxFrom, T minTo, T maxTo)
     return minTo + ((value - minFrom) / (maxFrom - minFrom)) * (maxTo - minTo);
 }
 
+int nextPowerOfTwo(int x);
+
 Uint32
 convertRGBAToColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 

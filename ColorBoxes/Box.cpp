@@ -18,8 +18,8 @@ Box::Box(float x, float y, ColorBoxesEngine* engine)
   h_(randomFloat(4.0f, 16.0f)),
   engine_(engine)
 {
-    borderColor_ = randomRGBColor();
-    fillColor_ = lightenColor(borderColor_, 0.5);
+    borderColor_ = GLColor::randomRGBColor();
+    fillColor_ = borderColor_.lighten(0.5f);
     makeBody(b2Vec2(x, y), w_, h_);
 }
 
@@ -36,27 +36,66 @@ Box::update(long timeElapsed)
 void
 Box::render()
 {
-    SDL_Surface* surface  = engine_->surface();
-    
     b2Vec2 worldCenter = body_->GetPosition();
     float32 theta = body_->GetAngle();
     b2Transform t;
     t.Set(worldCenter, theta);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glColor4f(fillColor_.r, fillColor_.g, fillColor_.b, fillColor_.a);
     
-    Sint16 vx[4];
-    Sint16 vy[4];
+    // Position for drawing
+//    glPushMatrix();
+//    float scale = engine_->scaleFactor();
+//    glScalef(scale, scale, scale);
+//    b2Vec2 worldPos = body_->GetPosition();
+//    glTranslatef(worldPos.x, worldPos.y, 0.0f);
+//    double theta = body_->GetAngle();
+//    glRotated(theta * 180.0f / M_PI, 0.0, 0.0, 1.0);
     
-    // Get the vertices so we can transform them.
+    // Draw the vertices.
     const b2Fixture* fixture = body_->GetFixtureList();
     const b2PolygonShape* polygon = dynamic_cast<const b2PolygonShape*>(fixture->GetShape());
+
+    b2Vec2 vertices[4];
+    glBegin(GL_TRIANGLE_FAN);
     for (int i = 0; i < polygon->m_vertexCount; ++i) {
-        b2Vec2 v = engine_->coordWorldToPixels(b2Mul(t, polygon->m_vertices[i]));
-        vx[i] = roundToInt(v.x);
-        vy[i] = roundToInt(v.y);
+        vertices[i] = engine_->coordWorldToPixels(b2Mul(t, polygon->m_vertices[i]));
+        glVertex2f(vertices[i].x, vertices[i].y);
     }
+    glEnd();
+    glDisable(GL_BLEND);
     
-    aapolygonColor(surface, vx, vy, 4, borderColor_);
-    filledPolygonColor(surface, vx, vy, 4, fillColor_);
+    glColor4f(borderColor_.r, borderColor_.g, borderColor_.b, borderColor_.a);
+    glBegin(GL_LINE_LOOP);
+    for (int i = 0; i < polygon->m_vertexCount; ++i) {
+        glVertex2f(vertices[i].x, vertices[i].y);
+    }
+    glEnd();
+//    glPopMatrix();
+    
+//    SDL_Surface* surface  = engine_->surface();
+//    
+//    b2Vec2 worldCenter = body_->GetPosition();
+//    float32 theta = body_->GetAngle();
+//    b2Transform t;
+//    t.Set(worldCenter, theta);
+//    
+//    Sint16 vx[4];
+//    Sint16 vy[4];
+//    
+//    // Get the vertices so we can transform them.
+//    const b2Fixture* fixture = body_->GetFixtureList();
+//    const b2PolygonShape* polygon = dynamic_cast<const b2PolygonShape*>(fixture->GetShape());
+//    for (int i = 0; i < polygon->m_vertexCount; ++i) {
+//        b2Vec2 v = engine_->coordWorldToPixels(b2Mul(t, polygon->m_vertices[i]));
+//        vx[i] = roundToInt(v.x);
+//        vy[i] = roundToInt(v.y);
+//    }
+//    
+//    aapolygonColor(surface, vx, vy, 4, borderColor_);
+//    filledPolygonColor(surface, vx, vy, 4, fillColor_);
 }
 
 bool

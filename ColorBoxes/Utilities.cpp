@@ -10,6 +10,12 @@
 #include "Utilities.h"
 
 
+int nextPowerOfTwo(int x)
+{
+	double logbase2 = log(x) / log(2);
+	return round(pow(2, ceil(logbase2)));
+}
+
 Uint32
 convertRGBAToColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {

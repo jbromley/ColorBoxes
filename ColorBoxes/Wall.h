@@ -10,6 +10,8 @@
 #define __ColorBoxes__Wall__
 
 #include <iostream>
+#include "GLColor.h"
+
 
 class b2Body;
 class ColorBoxesEngine;
@@ -28,8 +30,8 @@ private:
     float w_;
     float h_;
     
-    Uint32 borderColor_;
-    Uint32 fillColor_;
+    GLColor borderColor_;
+    GLColor fillColor_;
     
     b2Body* body_;
     

@@ -47,8 +47,11 @@ public:
     float scalarWorldToPixels(float val);
     float scalarPixelsToWorld(float val);
     
+    float scaleFactor() const;
+    
 private:
     void renderStatistics();
+    void renderText(const std::string& text, float x, float y);
     
     static ColorBoxesEngine* self;
     
@@ -63,7 +66,7 @@ private:
     float yFlip_;
     
     TTF_Font* font_;
-    SDL_Color textColor_;
+    GLColor textColor_;
 };
 
 
