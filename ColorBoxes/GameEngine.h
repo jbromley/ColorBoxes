@@ -3,8 +3,13 @@
 
 #include <string> 
 #include <SDL/SDL.h>
+#ifdef __APPLE__
 #include <OpenGL/gl.h>
 #include <OpengL/glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
 #include "GLColor.h"
 
 /** The base engine class. */

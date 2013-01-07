@@ -7,6 +7,8 @@
 //
 
 #include <cmath>
+#include <cstdlib>
+#include <limits>
 #include "Utilities.h"
 
 
@@ -49,7 +51,11 @@ lightenColor(Uint32 color, float factor)
 float
 randomFloat()
 {
+#ifdef __APPLE__
     return static_cast<float>(arc4random()) / UINT32_MAX;
+#else
+    return static_cast<float>(random()) / std::numeric_limits<long int>::max();
+#endif
 }
 
 float
@@ -67,19 +73,32 @@ roundToInt(float value)
 Uint32
 randomColor()
 {
+#ifdef __APPLE__
     Uint8 r = arc4random_uniform(256);
     Uint8 g = arc4random_uniform(256);
     Uint8 b = arc4random_uniform(256);
     Uint8 a = arc4random_uniform(256);
+#else
+    Uint8 r = random() % 256;
+    Uint8 g = random() % 256;
+    Uint8 b = random() % 256;
+    Uint8 a = random() % 256;
+#endif
     return convertRGBAToColor(r, g, b, a);
 }
 
 Uint32
 randomRGBColor()
 {
+#ifdef __APPLE__
     Uint8 r = arc4random_uniform(256);
     Uint8 g = arc4random_uniform(256);
     Uint8 b = arc4random_uniform(256);
+#else
+    Uint8 r = random() % 256;
+    Uint8 g = random() % 256;
+    Uint8 b = random() % 256;
+#endif
     Uint8 a = 255;
     return convertRGBAToColor(r, g, b, a);
 }

@@ -34,7 +34,11 @@ GameEngine::GameEngine(int width, int height, const std::string& resourcePath)
     
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
     SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE, 32);
-    
+
+    // The only Linux box I've tested has an old video card, so it doesn't
+    // support all of these attributes. I need to figure out the best 
+    // attributes supported by any given machine.
+#ifdef __APPLE__    
     SDL_GL_SetAttribute(SDL_GL_ACCUM_RED_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_ACCUM_GREEN_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_ACCUM_BLUE_SIZE, 8);
@@ -42,6 +46,7 @@ GameEngine::GameEngine(int width, int height, const std::string& resourcePath)
     
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 2);
+#endif
 
     // Attempt to create a window with the specified height and width.
     setSize(width_, height_);

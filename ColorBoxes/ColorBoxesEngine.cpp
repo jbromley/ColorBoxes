@@ -42,7 +42,12 @@ ColorBoxesEngine::ColorBoxesEngine(int w, int h, const char* resourcePath)
     // Set up Box2D world.
     b2Vec2 gravity(0.0f, -10.0f);
     bool doSleep = true;
+#ifdef __APPLE__
     world_ = new b2World(gravity, doSleep);
+#else
+    world_ = new b2World(gravity);
+    world_->SetAllowSleeping(doSleep);
+#endif
     world_->SetWarmStarting(true);
     world_->SetContinuousPhysics(true);
     
