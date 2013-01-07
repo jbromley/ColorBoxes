@@ -81,10 +81,10 @@ ColorBoxesEngine::initializeData()
 {
     setTitle("Box Fall");
 
-    walls_.push_back(new Wall(0.0f, 0.0f,
+    walls_.push_back(new Wall(0.0f, 1.0f,
                               5.0f, height() - 20.0f, this));
-    walls_.push_back(new Wall(width() - 6.0f, 0.0f,
-                              width() - 1.0f, height() - 20.0f, this));
+    walls_.push_back(new Wall(width() - 6.0f, 1.0f,
+                              5.0f, height() - 20.0f, this));
     walls_.push_back(new Wall(width() / 16.0f, height() - 15.0f,
                               6.0f * width() / 16.0f, 5.0, this));
     walls_.push_back(new Wall(9.0f * width() / 16.0f, height() - 15.0f,
