@@ -16,3 +16,4 @@ project.xcworkspace
 *.DS_Store
 *.swp
 *.out
+*.o
