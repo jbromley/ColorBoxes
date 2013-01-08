@@ -54,7 +54,7 @@ randomFloat()
 #ifdef __APPLE__
     return static_cast<float>(arc4random()) / UINT32_MAX;
 #else
-    return static_cast<float>(random()) / std::numeric_limits<long int>::max();
+    return static_cast<float>(random()) / RAND_MAX;
 #endif
 }
 
