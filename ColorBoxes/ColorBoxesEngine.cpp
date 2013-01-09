@@ -248,7 +248,7 @@ ColorBoxesEngine::mouseButtonDown(int button, int x, int y, int dx, int dy)
     } else if (button == SDL_BUTTON_RIGHT) {
 	// Turn on draw edge mode and record the starting point.
 	b2Vec2 pt(x, y);
-	newEdge_ = new Edge(pt, pt, GLColor::red(), this);
+	newEdge_ = new Edge(pt, pt, GLColor::cyan(), this);
     }
 }
 
@@ -262,7 +262,7 @@ ColorBoxesEngine::mouseButtonUp(int button, int x, int y, int dx, int dy)
 	    // Record edge end point and create the edge.
 	    b2Vec2 endPt(x, y);
 	    newEdge_->setEndPoint(endPt);
-	    newEdge_->setColor(GLColor::white());
+	    newEdge_->setColor(GLColor::magenta().lighten(0.75f));
 	    edges_.push_back(newEdge_);
 	    newEdge_ = NULL;
 	}

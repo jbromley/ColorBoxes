@@ -40,7 +40,7 @@ Wall::Wall(float x, float y, float w, float h, ColorBoxesEngine* engine)
     body_->SetUserData(this);
     
     // Set up colors.
-    borderColor_ = GLColor(1.0f, 0.0f, 1.0f, 1.0f);
+    borderColor_ = GLColor::magenta();
     fillColor_ = borderColor_.lighten(0.5f);
 }
 
