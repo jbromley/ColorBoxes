@@ -20,7 +20,7 @@
 
 class Wall;
 class Box;
-
+class Edge;
 
 class ColorBoxesEngine: public GameEngine
 {
@@ -57,6 +57,7 @@ private:
     
     std::vector<Wall*> walls_;
     std::vector<Box*> boxes_;
+    std::vector<Edge*> edges_;
     
     bool createBoxes_;
     bool renderStats_;
@@ -64,7 +65,9 @@ private:
     b2World* world_;
     float scaleFactor_;
     float yFlip_;
-    
+
+    Edge* newEdge_;
+      
     TTF_Font* font_;
     GLColor textColor_;
 };

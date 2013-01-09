@@ -7,8 +7,6 @@
 //
 
 #include <Box2D/Box2D.h>
-#include <SDL/SDL.h>
-#include <SDL/SDL_gfxPrimitives.h>
 #include "Wall.h"
 #include "ColorBoxesEngine.h"
 #include "Utilities.h"
