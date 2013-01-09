@@ -33,13 +33,13 @@ ColorBoxesEngine::instance()
 }
 
 ColorBoxesEngine::ColorBoxesEngine(int w, int h, const char* resourcePath)
-: GameEngine(w, h, resourcePath),
-    createBoxes_(false),
-    renderStats_(false),
-    scaleFactor_(10.0f),
-    yFlip_(-1.0f),
-    newEdge_(NULL),
-    textColor_(GLColor::white())
+    : GameEngine(w, h, resourcePath),
+      createBoxes_(false),
+      renderStats_(false),
+      scaleFactor_(10.0f),
+      yFlip_(-1.0f),
+      newEdge_(NULL),
+      textColor_(GLColor::white())
 {
     // Set up Box2D world.
     b2Vec2 gravity(0.0f, -10.0f);
@@ -111,7 +111,7 @@ ColorBoxesEngine::update(long elapsedTime)
 
     // Update the new edge if we are in edge drawing mode.
     if (newEdge_ != NULL) {
-	newEdge_->setEndPoint(b2Vec2(x, y));
+        newEdge_->setEndPoint(b2Vec2(x, y));
     }
     
     // Clear out any boxes that are off the screen.
@@ -129,7 +129,7 @@ ColorBoxesEngine::render()
     for_each(edges_.begin(), edges_.end(), std::mem_fun(&Edge::render));
 
     if (newEdge_ != NULL) {
-	newEdge_->render();
+        newEdge_->render();
     }
 
     if (renderStats_) {
@@ -148,39 +148,39 @@ ColorBoxesEngine::renderStatistics()
 void
 ColorBoxesEngine::renderText(const std::string &text, float x, float y)
 {
-	// Use SDL_TTF to render the text onto an initial surface.
-	SDL_Surface* textSurface = TTF_RenderText_Blended(font_, text.c_str(), textColor_.toSDLColor());
-	
-	/* Convert the rendered text to a known format */
-	int w = nextPowerOfTwo(textSurface->w);
-	int h = nextPowerOfTwo(textSurface->h);
-	
-	SDL_Surface* intermediary = SDL_CreateRGBSurface(SDL_HWSURFACE | SDL_SRCALPHA, w, h, 32,
+    // Use SDL_TTF to render the text onto an initial surface.
+    SDL_Surface* textSurface = TTF_RenderText_Blended(font_, text.c_str(), textColor_.toSDLColor());
+        
+    // Convert the rendered text to a known format.
+    int w = nextPowerOfTwo(textSurface->w);
+    int h = nextPowerOfTwo(textSurface->h);
+        
+    SDL_Surface* intermediary = SDL_CreateRGBSurface(SDL_HWSURFACE | SDL_SRCALPHA, w, h, 32,
                                                      0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
     SDL_SetAlpha(textSurface, 0, 0);
-	SDL_BlitSurface(textSurface, NULL, intermediary, NULL);
-	
-	/* Tell GL about our new texture */
+    SDL_BlitSurface(textSurface, NULL, intermediary, NULL);
+        
+    // Tell GL about our new texture.
     GLuint texture;
-	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glTexImage2D(GL_TEXTURE_2D, 0, 4, w, h, 0, GL_BGRA,
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTexImage2D(GL_TEXTURE_2D, 0, 4, w, h, 0, GL_BGRA,
                  GL_UNSIGNED_BYTE, intermediary->pixels );
-	
-	/* GL_NEAREST looks horrible, if scaled... */
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        
+    // GL_NEAREST looks horrible if scaled.
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     
-	/* prepare to render our texture */
+    // Prepare to render our texture.
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glColor4f(textColor_.r, textColor_.g, textColor_.b, textColor_.a);
-	
-	// Draw a quad at location.
-	glBegin(GL_QUADS);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glColor4f(textColor_.r, textColor_.g, textColor_.b, textColor_.a);
+        
+    // Draw a quad at location.
+    glBegin(GL_QUADS);
     // Recall that the origin is in the lower-left corner. That is why the
     // TexCoords specify different corners than the Vertex coors seem to.
     glTexCoord2f(0.0f, 0.0f);
@@ -191,17 +191,17 @@ ColorBoxesEngine::renderText(const std::string &text, float x, float y)
     glVertex2f(x + w, y + h);
     glTexCoord2f(0.0f, 1.0f);
     glVertex2f(x, y + h);
-	glEnd();
-	
-	// Bad things happen if we delete the texture before it finishes.
-	glFinish();
+    glEnd();
+        
+    // Bad things happen if we delete the texture before it finishes.
+    glFinish();
     glDisable(GL_TEXTURE_2D);
     glDisable(GL_BLEND);
-	
-	// Clean up.
-	SDL_FreeSurface(intermediary);
-	SDL_FreeSurface(textSurface);
-	glDeleteTextures(1, &texture);
+        
+    // Clean up.
+    SDL_FreeSurface(intermediary);
+    SDL_FreeSurface(textSurface);
+    glDeleteTextures(1, &texture);
 }
 
 void
@@ -213,24 +213,24 @@ void
 ColorBoxesEngine::keyDown(int keyCode)
 {
     switch (keyCode) {
-        case SDLK_b:
-            if (backgroundColor() == GLColor::black()) {
-                setBackgroundColor(GLColor::white());
-                textColor_ = GLColor::black();
-            } else {
-                setBackgroundColor(GLColor::black());
-                textColor_ = GLColor::white();
-            }
-            break;
-        case SDLK_s:
-            renderStats_ = !renderStats_;
-            break;
-        default:
-	    if (newEdge_ != NULL) {
-		delete newEdge_;
-		newEdge_ = NULL;
-	    }
-            break;
+    case SDLK_b:
+        if (backgroundColor() == GLColor::black()) {
+            setBackgroundColor(GLColor::white());
+            textColor_ = GLColor::black();
+        } else {
+            setBackgroundColor(GLColor::black());
+            textColor_ = GLColor::white();
+        }
+        break;
+    case SDLK_s:
+        renderStats_ = !renderStats_;
+        break;
+    default:
+        if (newEdge_ != NULL) {
+            delete newEdge_;
+            newEdge_ = NULL;
+        }
+        break;
     }
 }
 
@@ -246,9 +246,9 @@ ColorBoxesEngine::mouseButtonDown(int button, int x, int y, int dx, int dy)
     if (button == SDL_BUTTON_LEFT) {
         createBoxes_ = true;
     } else if (button == SDL_BUTTON_RIGHT) {
-	// Turn on draw edge mode and record the starting point.
-	b2Vec2 pt(x, y);
-	newEdge_ = new Edge(pt, pt, GLColor::cyan(), this);
+        // Turn on draw edge mode and record the starting point.
+        b2Vec2 pt(x, y);
+        newEdge_ = new Edge(pt, pt, GLColor::cyan(), this);
     }
 }
 
@@ -258,14 +258,14 @@ ColorBoxesEngine::mouseButtonUp(int button, int x, int y, int dx, int dy)
     if (button == SDL_BUTTON_LEFT) {
         createBoxes_ = false;
     } else if (button == SDL_BUTTON_RIGHT) {
-	if (newEdge_ != NULL) {
-	    // Record edge end point and create the edge.
-	    b2Vec2 endPt(x, y);
-	    newEdge_->setEndPoint(endPt);
-	    newEdge_->setColor(GLColor::magenta().lighten(0.75f));
-	    edges_.push_back(newEdge_);
-	    newEdge_ = NULL;
-	}
+        if (newEdge_ != NULL) {
+            // Record edge end point and create the edge.
+            b2Vec2 endPt(x, y);
+            newEdge_->setEndPoint(endPt);
+            newEdge_->setColor(GLColor::magenta().lighten(0.75f));
+            edges_.push_back(newEdge_);
+            newEdge_ = NULL;
+        }
     }
 }
 
