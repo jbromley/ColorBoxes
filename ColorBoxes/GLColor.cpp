@@ -71,6 +71,42 @@ GLColor::red()
 }
 
 GLColor
+GLColor::green()
+{
+    static GLColor greenInstance(0.0f, 1.0f, 0.0f, 1.0f);
+    return greenInstance;
+}
+
+GLColor
+GLColor::blue()
+{
+    static GLColor blueInstance(0.0f, 0.0f, 1.0f, 1.0f);
+    return blueInstance;
+}
+
+GLColor 
+GLColor::yellow()
+{
+    static GLColor yellowInstance(1.0f, 1.0f, 0.0f, 1.0f);
+    return yellowInstance;
+}
+
+GLColor 
+GLColor::magenta()
+{
+    static GLColor magentaInstance(1.0f, 0.0f, 1.0f, 1.0f);
+    return magentaInstance;
+}
+
+GLColor 
+GLColor::cyan()
+{
+    static GLColor cyanInstance(0.0f, 1.0f, 1.0f, 1.0f);
+    return cyanInstance;
+}
+
+
+GLColor
 GLColor::randomColor()
 {
     return GLColor(randomFloat(), randomFloat(), randomFloat(), randomFloat());
