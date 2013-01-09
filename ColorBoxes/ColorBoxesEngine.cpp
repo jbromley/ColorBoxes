@@ -258,12 +258,14 @@ ColorBoxesEngine::mouseButtonUp(int button, int x, int y, int dx, int dy)
     if (button == SDL_BUTTON_LEFT) {
         createBoxes_ = false;
     } else if (button == SDL_BUTTON_RIGHT) {
-	// Record edge end point and create the edge.
-	b2Vec2 endPt(x, y);
-	newEdge_->setEndPoint(endPt);
-	newEdge_->setColor(GLColor::white());
-	edges_.push_back(newEdge_);
-	newEdge_ = NULL;
+	if (newEdge_ != NULL) {
+	    // Record edge end point and create the edge.
+	    b2Vec2 endPt(x, y);
+	    newEdge_->setEndPoint(endPt);
+	    newEdge_->setColor(GLColor::white());
+	    edges_.push_back(newEdge_);
+	    newEdge_ = NULL;
+	}
     }
 }
 

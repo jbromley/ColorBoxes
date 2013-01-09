@@ -21,7 +21,7 @@ Edge::Edge(const b2Vec2& pt1, const b2Vec2& pt2, const GLColor& color, ColorBoxe
 
 Edge::~Edge()
 {
-    engine_->world()->DestroyBody(body_);
+    body_->GetWorld()->DestroyBody(body_);
 }
     
 void
