@@ -33,6 +33,7 @@ struct GLColor
     
     static GLColor black();
     static GLColor white();
+    static GLColor red();
     static GLColor randomColor();
     static GLColor randomRGBColor();
     
