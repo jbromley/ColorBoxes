@@ -6,11 +6,12 @@ OBJS =	GameEngine.o \
 	GLColor.o \
 	Utilities.o \
 	Wall.o \
+	Edge.o \
 	main.o
 OUTPUT = colorboxes
 
 CXX = g++
-CXXFLAGS = -D_GNU_SOURCE=1 -D_REENTRANT -IColorBoxes -I/usr/include
+CXXFLAGS = -ggdb -D_GNU_SOURCE=1 -D_REENTRANT -IColorBoxes -I/usr/include
 LDFLAGS = -L/usr/lib -l SDL_ttf -lSDL -lpthread -lGL -lGLU -lBox2D
 
 ${OUTPUT}: ${OBJS}

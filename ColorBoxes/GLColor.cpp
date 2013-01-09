@@ -64,6 +64,13 @@ GLColor::white()
 }
 
 GLColor
+GLColor::red()
+{
+    static GLColor redInstance(1.0f, 0.0f, 0.0f, 1.0f);
+    return redInstance;
+}
+
+GLColor
 GLColor::randomColor()
 {
     return GLColor(randomFloat(), randomFloat(), randomFloat(), randomFloat());

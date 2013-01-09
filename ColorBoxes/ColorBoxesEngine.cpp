@@ -13,6 +13,7 @@
 #include "Utilities.h"
 #include "Wall.h"
 #include "Box.h"
+#include "Edge.h"
 
 
 void deleteDoneBoxes(Box*& box)
@@ -37,6 +38,7 @@ ColorBoxesEngine::ColorBoxesEngine(int w, int h, const char* resourcePath)
     renderStats_(false),
     scaleFactor_(10.0f),
     yFlip_(-1.0f),
+    newEdge_(NULL),
     textColor_(GLColor::white())
 {
     // Set up Box2D world.
@@ -98,12 +100,18 @@ ColorBoxesEngine::update(long elapsedTime)
     const int32 positionIterations = 2;
     float32 timeStep = elapsedTime / 1000.0f;
     
+    int x;
+    int y;
+    SDL_GetMouseState(&x, &y);
+
     // Create a box if we are in create mode.
     if (createBoxes_) {
-        int x;
-        int y;
-        SDL_GetMouseState(&x, &y);
         boxes_.push_back(new Box(x, y, this));
+    }
+
+    // Update the new edge if we are in edge drawing mode.
+    if (newEdge_ != NULL) {
+	newEdge_->setEndPoint(b2Vec2(x, y));
     }
     
     // Clear out any boxes that are off the screen.
@@ -118,7 +126,12 @@ ColorBoxesEngine::render()
 {
     for_each(walls_.begin(), walls_.end(), std::mem_fun(&Wall::render));
     for_each(boxes_.begin(), boxes_.end(), std::mem_fun(&Box::render));
-    
+    for_each(edges_.begin(), edges_.end(), std::mem_fun(&Edge::render));
+
+    if (newEdge_ != NULL) {
+	newEdge_->render();
+    }
+
     if (renderStats_) {
         renderStatistics();
     }
@@ -211,10 +224,12 @@ ColorBoxesEngine::keyDown(int keyCode)
             break;
         case SDLK_s:
             renderStats_ = !renderStats_;
-            std::cout << "render statistics = " << (renderStats_ ? "true" : "false") << std::endl;
             break;
         default:
-            std::cout << "keyDown(" << keyCode << ")" << std::endl;
+	    if (newEdge_ != NULL) {
+		delete newEdge_;
+		newEdge_ = NULL;
+	    }
             break;
     }
 }
@@ -230,6 +245,10 @@ ColorBoxesEngine::mouseButtonDown(int button, int x, int y, int dx, int dy)
 {
     if (button == SDL_BUTTON_LEFT) {
         createBoxes_ = true;
+    } else if (button == SDL_BUTTON_RIGHT) {
+	// Turn on draw edge mode and record the starting point.
+	b2Vec2 pt(x, y);
+	newEdge_ = new Edge(pt, pt, GLColor::red(), this);
     }
 }
 
@@ -238,6 +257,13 @@ ColorBoxesEngine::mouseButtonUp(int button, int x, int y, int dx, int dy)
 {
     if (button == SDL_BUTTON_LEFT) {
         createBoxes_ = false;
+    } else if (button == SDL_BUTTON_RIGHT) {
+	// Record edge end point and create the edge.
+	b2Vec2 endPt(x, y);
+	newEdge_->setEndPoint(endPt);
+	newEdge_->setColor(GLColor::white());
+	edges_.push_back(newEdge_);
+	newEdge_ = NULL;
     }
 }
 
