@@ -58,7 +58,7 @@ void Edge::render()
 {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glLineWidth(2.0);
+    glLineWidth(2.5);
     glColor4f(color_.r, color_.g, color_.b, color_.a);
     glBegin(GL_LINES);
     glVertex2f(startPt_.x, startPt_.y);
