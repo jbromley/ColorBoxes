@@ -16,11 +16,9 @@
 		69241515168CFAD300046D84 /* Wall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69241513168CFAD300046D84 /* Wall.cpp */; };
 		6924151C168D20CD00046D84 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6924151B168D20CD00046D84 /* Utilities.cpp */; };
 		6924151E168D29A000046D84 /* SDL_gfx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6924151D168D29A000046D84 /* SDL_gfx.framework */; };
-		69241520168D2A7C00046D84 /* libBox2D.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6924151F168D2A7C00046D84 /* libBox2D.2.1.0.dylib */; };
 		69241525168D2F6300046D84 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69241524168D2F6300046D84 /* SDL.framework */; };
 		69F3133D168D699000F113DC /* SDL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69241524168D2F6300046D84 /* SDL.framework */; };
 		69F3133E168D699300F113DC /* SDL_gfx.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6924151D168D29A000046D84 /* SDL_gfx.framework */; };
-		69F3133F168D699500F113DC /* libBox2D.2.1.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6924151F168D2A7C00046D84 /* libBox2D.2.1.0.dylib */; };
 		69F31345168D6BDA00F113DC /* SDL_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F31344168D6BDA00F113DC /* SDL_ttf.framework */; };
 		69F31346168D6BF500F113DC /* SDL_ttf.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69F31344168D6BDA00F113DC /* SDL_ttf.framework */; };
 		69F31348168D6C8700F113DC /* Arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69F31347168D6C8700F113DC /* Arial.ttf */; };
@@ -29,6 +27,9 @@
 		69F31365168E3F7B00F113DC /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F31364168E3F7B00F113DC /* OpenGL.framework */; };
 		69F31368168E426B00F113DC /* GLColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F31366168E426B00F113DC /* GLColor.cpp */; };
 		69F31377168EBF6900F113DC /* ColorBoxes.icns in Resources */ = {isa = PBXBuildFile; fileRef = 69F31376168EBF6900F113DC /* ColorBoxes.icns */; };
+		69F68480169E955800B28B18 /* libBox2D.2.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F6847F169E955800B28B18 /* libBox2D.2.2.1.dylib */; };
+		69F68481169E957100B28B18 /* libBox2D.2.2.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69F6847F169E955800B28B18 /* libBox2D.2.2.1.dylib */; };
+		69F68484169E959900B28B18 /* Edge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F68482169E959900B28B18 /* Edge.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,10 +39,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				69F68481169E957100B28B18 /* libBox2D.2.2.1.dylib in CopyFiles */,
 				69F3133D168D699000F113DC /* SDL.framework in CopyFiles */,
 				69F3133E168D699300F113DC /* SDL_gfx.framework in CopyFiles */,
 				69F31346168D6BF500F113DC /* SDL_ttf.framework in CopyFiles */,
-				69F3133F168D699500F113DC /* libBox2D.2.1.0.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,7 +65,6 @@
 		69241514168CFAD300046D84 /* Wall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wall.h; sourceTree = "<group>"; };
 		6924151B168D20CD00046D84 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		6924151D168D29A000046D84 /* SDL_gfx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_gfx.framework; path = /opt/local/Library/Frameworks/SDL_gfx.framework; sourceTree = "<absolute>"; };
-		6924151F168D2A7C00046D84 /* libBox2D.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBox2D.2.1.0.dylib; path = /opt/local/lib/libBox2D.2.1.0.dylib; sourceTree = "<absolute>"; };
 		69241524168D2F6300046D84 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = /opt/local/Library/Frameworks/SDL.framework; sourceTree = "<absolute>"; };
 		69F31344168D6BDA00F113DC /* SDL_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_ttf.framework; path = /opt/local/Library/Frameworks/SDL_ttf.framework; sourceTree = "<absolute>"; };
 		69F31347168D6C8700F113DC /* Arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Arial.ttf; sourceTree = "<group>"; };
@@ -76,6 +76,9 @@
 		69F31366168E426B00F113DC /* GLColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLColor.cpp; sourceTree = "<group>"; };
 		69F31367168E426B00F113DC /* GLColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLColor.h; sourceTree = "<group>"; };
 		69F31376168EBF6900F113DC /* ColorBoxes.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ColorBoxes.icns; sourceTree = SOURCE_ROOT; };
+		69F6847F169E955800B28B18 /* libBox2D.2.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBox2D.2.2.1.dylib; path = /opt/local/lib/libBox2D.2.2.1.dylib; sourceTree = "<absolute>"; };
+		69F68482169E959900B28B18 /* Edge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Edge.cpp; sourceTree = "<group>"; };
+		69F68483169E959900B28B18 /* Edge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Edge.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69241520168D2A7C00046D84 /* libBox2D.2.1.0.dylib in Frameworks */,
+				69F68480169E955800B28B18 /* libBox2D.2.2.1.dylib in Frameworks */,
 				692414E0168CE5BC00046D84 /* Foundation.framework in Frameworks */,
 				692414E2168CE5BC00046D84 /* Cocoa.framework in Frameworks */,
 				69241525168D2F6300046D84 /* SDL.framework in Frameworks */,
@@ -116,7 +119,7 @@
 		692414DE168CE5BC00046D84 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6924151F168D2A7C00046D84 /* libBox2D.2.1.0.dylib */,
+				69F6847F169E955800B28B18 /* libBox2D.2.2.1.dylib */,
 				69241524168D2F6300046D84 /* SDL.framework */,
 				6924151D168D29A000046D84 /* SDL_gfx.framework */,
 				69F31344168D6BDA00F113DC /* SDL_ttf.framework */,
@@ -154,6 +157,8 @@
 		692414F1168CE5BD00046D84 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				69F68482169E959900B28B18 /* Edge.cpp */,
+				69F68483169E959900B28B18 /* Edge.h */,
 				69241508168CE79300046D84 /* GameEngine.h */,
 				69241507168CE79300046D84 /* GameEngine.cpp */,
 				6924150C168CE84300046D84 /* ColorBoxesEngine.h */,
@@ -243,6 +248,7 @@
 				6924151C168D20CD00046D84 /* Utilities.cpp in Sources */,
 				69F31350168D97CE00F113DC /* Box.cpp in Sources */,
 				69F31368168E426B00F113DC /* GLColor.cpp in Sources */,
+				69F68484169E959900B28B18 /* Edge.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
