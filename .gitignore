@@ -1,5 +1,5 @@
 # Xcode specific
-colorboxes
+#colorboxes
 build/*
 *.pbxuser
 *.mode2v3
