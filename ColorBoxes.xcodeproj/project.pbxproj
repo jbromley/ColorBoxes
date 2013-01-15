@@ -30,6 +30,7 @@
 		69F68480169E955800B28B18 /* libBox2D.2.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F6847F169E955800B28B18 /* libBox2D.2.2.1.dylib */; };
 		69F68481169E957100B28B18 /* libBox2D.2.2.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69F6847F169E955800B28B18 /* libBox2D.2.2.1.dylib */; };
 		69F68484169E959900B28B18 /* Edge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F68482169E959900B28B18 /* Edge.cpp */; };
+		69F6848716A52C4C00B28B18 /* Shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F6848516A52C4C00B28B18 /* Shape.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,6 +80,8 @@
 		69F6847F169E955800B28B18 /* libBox2D.2.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBox2D.2.2.1.dylib; path = /opt/local/lib/libBox2D.2.2.1.dylib; sourceTree = "<absolute>"; };
 		69F68482169E959900B28B18 /* Edge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Edge.cpp; sourceTree = "<group>"; };
 		69F68483169E959900B28B18 /* Edge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Edge.h; sourceTree = "<group>"; };
+		69F6848516A52C4C00B28B18 /* Shape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shape.cpp; sourceTree = "<group>"; };
+		69F6848616A52C4C00B28B18 /* Shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shape.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +166,8 @@
 				69241507168CE79300046D84 /* GameEngine.cpp */,
 				6924150C168CE84300046D84 /* ColorBoxesEngine.h */,
 				6924150B168CE84300046D84 /* ColorBoxesEngine.cpp */,
+				69F6848616A52C4C00B28B18 /* Shape.h */,
+				69F6848516A52C4C00B28B18 /* Shape.cpp */,
 				69F3134F168D97CD00F113DC /* Box.h */,
 				69F3134E168D97CD00F113DC /* Box.cpp */,
 				69241514168CFAD300046D84 /* Wall.h */,
@@ -249,6 +254,7 @@
 				69F31350168D97CE00F113DC /* Box.cpp in Sources */,
 				69F31368168E426B00F113DC /* GLColor.cpp in Sources */,
 				69F68484169E959900B28B18 /* Edge.cpp in Sources */,
+				69F6848716A52C4C00B28B18 /* Shape.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

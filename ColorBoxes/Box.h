@@ -11,35 +11,27 @@
 
 #include <iostream>
 #include <Box2D/Box2D.h>
-#include <SDL/SDL.h>
+#include "Shape.h"
 #include "GLColor.h"
 
 
 class ColorBoxesEngine;
 
-class Box
+class Box : public Shape
 {
 public:
     Box(float x, float y, ColorBoxesEngine* engine);
     ~Box();
     
-    void update(long timeElapsed);
-    void render();
-    bool done();
+    virtual void update(long timeElapsed);
     
-private:
-    void makeBody(const b2Vec2& center, float width, float height);
-    void killBody();
+protected:
+    virtual float shapeHeight() const;
+    virtual b2Shape* makeShape(const b2Vec2& center);
     
+private:    
     float w_;
     float h_;
-    
-    b2Body* body_;
-    
-    GLColor fillColor_;
-    GLColor borderColor_;
-    
-    ColorBoxesEngine* engine_;
 };
 
 #endif /* defined(__ColorBoxes__Box__) */
