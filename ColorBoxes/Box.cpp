@@ -43,6 +43,10 @@ Box::render()
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_LINE_SMOOTH);
+    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+    glEnable(GL_POLYGON_SMOOTH);
+    glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
     glColor4f(fillColor_.r, fillColor_.g, fillColor_.b, fillColor_.a);
     
     // Position for drawing
@@ -73,29 +77,9 @@ Box::render()
         glVertex2f(vertices[i].x, vertices[i].y);
     }
     glEnd();
-//    glPopMatrix();
-    
-//    SDL_Surface* surface  = engine_->surface();
-//    
-//    b2Vec2 worldCenter = body_->GetPosition();
-//    float32 theta = body_->GetAngle();
-//    b2Transform t;
-//    t.Set(worldCenter, theta);
-//    
-//    Sint16 vx[4];
-//    Sint16 vy[4];
-//    
-//    // Get the vertices so we can transform them.
-//    const b2Fixture* fixture = body_->GetFixtureList();
-//    const b2PolygonShape* polygon = dynamic_cast<const b2PolygonShape*>(fixture->GetShape());
-//    for (int i = 0; i < polygon->m_vertexCount; ++i) {
-//        b2Vec2 v = engine_->coordWorldToPixels(b2Mul(t, polygon->m_vertices[i]));
-//        vx[i] = roundToInt(v.x);
-//        vy[i] = roundToInt(v.y);
-//    }
-//    
-//    aapolygonColor(surface, vx, vy, 4, borderColor_);
-//    filledPolygonColor(surface, vx, vy, 4, fillColor_);
+
+    glDisable(GL_LINE_SMOOTH);
+    glDisable(GL_POLYGON_SMOOTH);
 }
 
 bool
