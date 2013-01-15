@@ -19,6 +19,7 @@
 
 
 class Wall;
+class Shape;
 class Box;
 class Edge;
 
@@ -57,7 +58,7 @@ private:
     static ColorBoxesEngine* self;
     
     std::vector<Wall*> walls_;
-    std::vector<Box*> boxes_;
+    std::vector<Shape*> objects_;
     std::vector<Edge*> edges_;
     
     bool createBoxes_;

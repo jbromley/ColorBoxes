@@ -16,7 +16,7 @@
 #include "Edge.h"
 
 
-void deleteDoneBoxes(Box*& box)
+void deleteDoneShapes(Shape*& box)
 {
     if (box->done()) {
         delete box;
@@ -33,7 +33,7 @@ void deleteAll(T*& object)
 
 
 template void deleteAll<Edge>(Edge*&);
-template void deleteAll<Box>(Box*&);
+template void deleteAll<Shape>(Shape*&);
 
 
 ColorBoxesEngine* ColorBoxesEngine::self = NULL;
@@ -114,7 +114,7 @@ ColorBoxesEngine::update(long elapsedTime)
 
     // Create a box if we are in create mode.
     if (createBoxes_) {
-        boxes_.push_back(new Box(x, y, this));
+        objects_.push_back(new Box(x, y, this));
     }
 
     // Update the new edge if we are in edge drawing mode.
@@ -123,8 +123,8 @@ ColorBoxesEngine::update(long elapsedTime)
     }
     
     // Clear out any boxes that are off the screen.
-    for_each(boxes_.begin(), boxes_.end(), deleteDoneBoxes);
-    boxes_.erase(std::remove(boxes_.begin(), boxes_.end(), static_cast<Box*>(0)), boxes_.end());
+    for_each(objects_.begin(), objects_.end(), deleteDoneShapes);
+    objects_.erase(std::remove(objects_.begin(), objects_.end(), static_cast<Shape*>(0)), objects_.end());
     
     world_->Step(timeStep, velocityIterations, positionIterations);
 }
@@ -133,7 +133,7 @@ void
 ColorBoxesEngine::render()
 {
     for_each(walls_.begin(), walls_.end(), std::mem_fun(&Wall::render));
-    for_each(boxes_.begin(), boxes_.end(), std::mem_fun(&Box::render));
+    for_each(objects_.begin(), objects_.end(), std::mem_fun(&Shape::render));
     for_each(edges_.begin(), edges_.end(), std::mem_fun(&Edge::render));
 
     if (newEdge_ != NULL) {
@@ -149,7 +149,7 @@ void
 ColorBoxesEngine::renderStatistics()
 {
     std::ostringstream msg;
-    msg << boxes_.size() << " boxes, " << fps() << " fps";
+    msg << objects_.size() << " boxes, " << fps() << " fps";
     renderText(msg.str(), 8.0f, 2.0f);
 }
 
@@ -293,8 +293,8 @@ ColorBoxesEngine::world()
 void
 ColorBoxesEngine::resetWorld()
 {
-    for_each(boxes_.begin(), boxes_.end(), deleteAll<Box>);
-    boxes_.erase(std::remove(boxes_.begin(), boxes_.end(), static_cast<Box*>(0)), boxes_.end());
+    for_each(objects_.begin(), objects_.end(), deleteAll<Shape>);
+    objects_.erase(std::remove(objects_.begin(), objects_.end(), static_cast<Shape*>(0)), objects_.end());
     
     for_each(edges_.begin(), edges_.end(), deleteAll<Edge>);
     edges_.erase(std::remove(edges_.begin(), edges_.end(), static_cast<Edge*>(0)), edges_.end());
