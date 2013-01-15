@@ -190,11 +190,9 @@ void GameEngine::doRender()
         fpsTickCounter_ = 0;
     }
     
-//    SDL_FillRect(screen_, 0, backgroundColor_);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     render();
-//    SDL_Flip(screen_);
     SDL_GL_SwapBuffers();
 }
 
