@@ -201,7 +201,7 @@ static void CustomApplicationMain (int argc, char **argv)
     NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
     const char *resourcePathC = [resourcePath cStringUsingEncoding:[NSString defaultCStringEncoding]];
 
-    ColorBoxesEngine* game = new ColorBoxesEngine(1280, 1280, resourcePathC);
+    ColorBoxesEngine* game = new ColorBoxesEngine(1280, 960, resourcePathC);
     game->init();
     status = game->run();
 
