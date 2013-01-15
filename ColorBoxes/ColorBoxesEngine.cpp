@@ -24,6 +24,18 @@ void deleteDoneBoxes(Box*& box)
     }
 }
 
+template <class T>
+void deleteAll(T*& object)
+{
+    delete object;
+    object = 0;
+}
+
+
+template void deleteAll<Edge>(Edge*&);
+template void deleteAll<Box>(Box*&);
+
+
 ColorBoxesEngine* ColorBoxesEngine::self = NULL;
 
 ColorBoxesEngine*
@@ -44,12 +56,8 @@ ColorBoxesEngine::ColorBoxesEngine(int w, int h, const char* resourcePath)
     // Set up Box2D world.
     b2Vec2 gravity(0.0f, -10.0f);
     bool doSleep = true;
-#ifdef __APPLE__
-    world_ = new b2World(gravity, doSleep);
-#else
     world_ = new b2World(gravity);
     world_->SetAllowSleeping(doSleep);
-#endif
     world_->SetWarmStarting(true);
     world_->SetContinuousPhysics(true);
     
@@ -222,14 +230,21 @@ ColorBoxesEngine::keyDown(int keyCode)
             textColor_ = GLColor::white();
         }
         break;
+    case SDLK_r:
+        // Reset the world: clear boxes and edges.
+        resetWorld();
+        break;
     case SDLK_s:
         renderStats_ = !renderStats_;
         break;
-    default:
+    case SDLK_SPACE:
         if (newEdge_ != NULL) {
             delete newEdge_;
             newEdge_ = NULL;
         }
+        break;
+    default:
+        // Do nothing.
         break;
     }
 }
@@ -246,20 +261,12 @@ ColorBoxesEngine::mouseButtonDown(int button, int x, int y, int dx, int dy)
     if (button == SDL_BUTTON_LEFT) {
         createBoxes_ = true;
     } else if (button == SDL_BUTTON_RIGHT) {
-        // Turn on draw edge mode and record the starting point.
-        b2Vec2 pt(x, y);
-        newEdge_ = new Edge(pt, pt, GLColor::cyan(), this);
-    }
-}
-
-void
-ColorBoxesEngine::mouseButtonUp(int button, int x, int y, int dx, int dy)
-{
-    if (button == SDL_BUTTON_LEFT) {
-        createBoxes_ = false;
-    } else if (button == SDL_BUTTON_RIGHT) {
-        if (newEdge_ != NULL) {
-            // Record edge end point and create the edge.
+        if (newEdge_ == NULL) {
+            // Turn on draw edge mode and record the starting point.
+            b2Vec2 pt(x, y);
+            newEdge_ = new Edge(pt, pt, GLColor::cyan(), this);
+        } else {
+            // End draw edge mode and finalize the edge.
             b2Vec2 endPt(x, y);
             newEdge_->setEndPoint(endPt);
             newEdge_->setColor(GLColor::magenta().lighten(0.75f));
@@ -269,10 +276,28 @@ ColorBoxesEngine::mouseButtonUp(int button, int x, int y, int dx, int dy)
     }
 }
 
+void
+ColorBoxesEngine::mouseButtonUp(int button, int x, int y, int dx, int dy)
+{
+    if (button == SDL_BUTTON_LEFT) {
+        createBoxes_ = false;
+    }
+}
+
 b2World*
 ColorBoxesEngine::world()
 {
     return world_;
+}
+
+void
+ColorBoxesEngine::resetWorld()
+{
+    for_each(boxes_.begin(), boxes_.end(), deleteAll<Box>);
+    boxes_.erase(std::remove(boxes_.begin(), boxes_.end(), static_cast<Box*>(0)), boxes_.end());
+    
+    for_each(edges_.begin(), edges_.end(), deleteAll<Edge>);
+    edges_.erase(std::remove(edges_.begin(), edges_.end(), static_cast<Edge*>(0)), edges_.end());
 }
 
 b2Vec2

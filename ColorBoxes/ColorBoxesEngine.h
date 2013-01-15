@@ -52,6 +52,7 @@ public:
 private:
     void renderStatistics();
     void renderText(const std::string& text, float x, float y);
+    void resetWorld();
     
     static ColorBoxesEngine* self;
     
