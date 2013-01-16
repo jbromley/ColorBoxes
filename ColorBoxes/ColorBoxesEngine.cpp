@@ -12,6 +12,7 @@
 #include "ColorBoxesEngine.h"
 #include "Utilities.h"
 #include "Wall.h"
+#include "Circle.h"
 #include "Polygon.h"
 #include "Box.h"
 #include "Edge.h"
@@ -126,6 +127,9 @@ ColorBoxesEngine::update(long elapsedTime)
             case OCTAGON:
                 object = new Polygon(x, y, currentShape_ + 3, this);
                 break;
+            case CIRCLE:
+                object = new Circle(x, y, this);
+                break;
             case BOX:
                 object = new Box(x, y, this);
                 break;
@@ -142,7 +146,7 @@ ColorBoxesEngine::update(long elapsedTime)
         newEdge_->setEndPoint(b2Vec2(x, y));
     }
     
-    // Clear out any boxes that are off the screen.
+    // Clear out any objects that are off the screen.
     for_each(objects_.begin(), objects_.end(), deleteDoneShapes);
     objects_.erase(std::remove(objects_.begin(), objects_.end(), static_cast<Shape*>(0)), objects_.end());
     
@@ -169,7 +173,7 @@ void
 ColorBoxesEngine::renderStatistics()
 {
     std::ostringstream msg;
-    msg << objects_.size() << " boxes, " << fps() << " fps";
+    msg << objects_.size() << " objects, " << fps() << " fps";
     renderText(msg.str(), 8.0f, 2.0f);
 }
 

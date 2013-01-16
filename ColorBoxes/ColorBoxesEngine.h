@@ -58,6 +58,7 @@ private:
         HEXAGON,
         HEPTAGON,
         OCTAGON,
+        CIRCLE,
         BOX,
         NUMBER_OBJECT_SHAPES
     };
