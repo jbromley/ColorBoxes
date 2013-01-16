@@ -21,13 +21,11 @@ class Box : public Shape
 {
 public:
     Box(float x, float y, ColorBoxesEngine* engine);
-    ~Box();
-    
-    virtual void update(long timeElapsed);
+    virtual ~Box();
     
 protected:
     virtual float shapeHeight() const;
-    virtual b2Shape* makeShape(const b2Vec2& center);
+    virtual b2Shape* makeShape();
     
 private:    
     float w_;

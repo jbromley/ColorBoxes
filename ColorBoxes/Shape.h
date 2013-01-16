@@ -22,13 +22,13 @@ public:
     Shape(int numVertices, ColorBoxesEngine* engine);
     virtual ~Shape();
     
-    virtual void update(long timeElapsed) = 0;
+    virtual void update(long timeElapsed);
     virtual void render();
     bool done() const;
     
 protected:
     virtual float shapeHeight() const = 0;
-    virtual b2Shape* makeShape(const b2Vec2& center) = 0;
+    virtual b2Shape* makeShape() = 0;
     void makeBody(const b2Vec2& center);
     void killBody();
     

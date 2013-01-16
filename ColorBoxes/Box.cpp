@@ -26,11 +26,6 @@ Box::~Box()
 {
 }
 
-void
-Box::update(long timeElapsed)
-{
-}
-
 float
 Box::shapeHeight() const
 {
@@ -38,7 +33,7 @@ Box::shapeHeight() const
 }
 
 b2Shape*
-Box::makeShape(const b2Vec2& center)
+Box::makeShape()
 {
     b2PolygonShape* boxShape = new b2PolygonShape;
     boxShape->SetAsBox(engine_->scalarPixelsToWorld(w_),

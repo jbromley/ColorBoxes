@@ -31,6 +31,7 @@
 		69F68481169E957100B28B18 /* libBox2D.2.2.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69F6847F169E955800B28B18 /* libBox2D.2.2.1.dylib */; };
 		69F68484169E959900B28B18 /* Edge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F68482169E959900B28B18 /* Edge.cpp */; };
 		69F6848716A52C4C00B28B18 /* Shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F6848516A52C4C00B28B18 /* Shape.cpp */; };
+		69F6848F16A5510E00B28B18 /* Polygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F6848D16A5510E00B28B18 /* Polygon.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -82,6 +83,8 @@
 		69F68483169E959900B28B18 /* Edge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Edge.h; sourceTree = "<group>"; };
 		69F6848516A52C4C00B28B18 /* Shape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shape.cpp; sourceTree = "<group>"; };
 		69F6848616A52C4C00B28B18 /* Shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shape.h; sourceTree = "<group>"; };
+		69F6848D16A5510E00B28B18 /* Polygon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Polygon.cpp; sourceTree = "<group>"; };
+		69F6848E16A5510E00B28B18 /* Polygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polygon.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +169,8 @@
 				69241507168CE79300046D84 /* GameEngine.cpp */,
 				6924150C168CE84300046D84 /* ColorBoxesEngine.h */,
 				6924150B168CE84300046D84 /* ColorBoxesEngine.cpp */,
+				69F6848E16A5510E00B28B18 /* Polygon.h */,
+				69F6848D16A5510E00B28B18 /* Polygon.cpp */,
 				69F6848616A52C4C00B28B18 /* Shape.h */,
 				69F6848516A52C4C00B28B18 /* Shape.cpp */,
 				69F3134F168D97CD00F113DC /* Box.h */,
@@ -255,6 +260,7 @@
 				69F31368168E426B00F113DC /* GLColor.cpp in Sources */,
 				69F68484169E959900B28B18 /* Edge.cpp in Sources */,
 				69F6848716A52C4C00B28B18 /* Shape.cpp in Sources */,
+				69F6848F16A5510E00B28B18 /* Polygon.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

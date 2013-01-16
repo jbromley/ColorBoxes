@@ -51,6 +51,17 @@ public:
     float scaleFactor() const;
     
 private:
+    enum ObjectShape {
+        TRIANGLE,
+        QUADRILATERAL,
+        PENTAGON,
+        HEXAGON,
+        HEPTAGON,
+        OCTAGON,
+        BOX,
+        NUMBER_OBJECT_SHAPES
+    };
+    
     void renderStatistics();
     void renderText(const std::string& text, float x, float y);
     void resetWorld();
@@ -61,7 +72,8 @@ private:
     std::vector<Shape*> objects_;
     std::vector<Edge*> edges_;
     
-    bool createBoxes_;
+    ObjectShape currentShape_;
+    bool createObjects_;
     bool renderStats_;
     
     b2World* world_;

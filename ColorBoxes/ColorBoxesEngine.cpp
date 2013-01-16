@@ -12,6 +12,7 @@
 #include "ColorBoxesEngine.h"
 #include "Utilities.h"
 #include "Wall.h"
+#include "Polygon.h"
 #include "Box.h"
 #include "Edge.h"
 
@@ -46,7 +47,8 @@ ColorBoxesEngine::instance()
 
 ColorBoxesEngine::ColorBoxesEngine(int w, int h, const char* resourcePath)
     : GameEngine(w, h, resourcePath),
-      createBoxes_(false),
+      currentShape_(TRIANGLE),
+      createObjects_(false),
       renderStats_(false),
       scaleFactor_(10.0f),
       yFlip_(-1.0f),
@@ -112,9 +114,27 @@ ColorBoxesEngine::update(long elapsedTime)
     int y;
     SDL_GetMouseState(&x, &y);
 
-    // Create a box if we are in create mode.
-    if (createBoxes_) {
-        objects_.push_back(new Box(x, y, this));
+    // Create an object if we are in create mode.
+    if (createObjects_) {
+        Shape* object = NULL;
+        switch (currentShape_) {
+            case TRIANGLE:
+            case QUADRILATERAL:
+            case PENTAGON:
+            case HEXAGON:
+            case HEPTAGON:
+            case OCTAGON:
+                object = new Polygon(x, y, currentShape_ + 3, this);
+                break;
+            case BOX:
+                object = new Box(x, y, this);
+                break;
+            default:
+                // Do nothing.
+                break;
+        }
+        
+        objects_.push_back(object);
     }
 
     // Update the new edge if we are in edge drawing mode.
@@ -221,31 +241,38 @@ void
 ColorBoxesEngine::keyDown(int keyCode)
 {
     switch (keyCode) {
-    case SDLK_b:
-        if (backgroundColor() == GLColor::black()) {
-            setBackgroundColor(GLColor::white());
-            textColor_ = GLColor::black();
-        } else {
-            setBackgroundColor(GLColor::black());
-            textColor_ = GLColor::white();
-        }
-        break;
-    case SDLK_r:
-        // Reset the world: clear boxes and edges.
-        resetWorld();
-        break;
-    case SDLK_s:
-        renderStats_ = !renderStats_;
-        break;
-    case SDLK_SPACE:
-        if (newEdge_ != NULL) {
-            delete newEdge_;
-            newEdge_ = NULL;
-        }
-        break;
-    default:
-        // Do nothing.
-        break;
+        case SDLK_a:
+            currentShape_ = ++currentShape_;
+            if (currentShape_ == NUMBER_OBJECT_SHAPES) {
+                currentShape_ = TRIANGLE;
+            }
+            std::cout << "Current shape: " << currentShape_ << std::endl;
+            break;
+        case SDLK_b:
+            if (backgroundColor() == GLColor::black()) {
+                setBackgroundColor(GLColor::white());
+                textColor_ = GLColor::black();
+            } else {
+                setBackgroundColor(GLColor::black());
+                textColor_ = GLColor::white();
+            }
+            break;
+        case SDLK_r:
+            // Reset the world: clear boxes and edges.
+            resetWorld();
+            break;
+        case SDLK_s:
+            renderStats_ = !renderStats_;
+            break;
+        case SDLK_SPACE:
+            if (newEdge_ != NULL) {
+                delete newEdge_;
+                newEdge_ = NULL;
+            }
+            break;
+        default:
+            // Do nothing.
+            break;
     }
 }
 
@@ -259,7 +286,7 @@ void
 ColorBoxesEngine::mouseButtonDown(int button, int x, int y, int dx, int dy)
 {
     if (button == SDL_BUTTON_LEFT) {
-        createBoxes_ = true;
+        createObjects_ = true;
     } else if (button == SDL_BUTTON_RIGHT) {
         if (newEdge_ == NULL) {
             // Turn on draw edge mode and record the starting point.
@@ -280,7 +307,7 @@ void
 ColorBoxesEngine::mouseButtonUp(int button, int x, int y, int dx, int dy)
 {
     if (button == SDL_BUTTON_LEFT) {
-        createBoxes_ = false;
+        createObjects_ = false;
     }
 }
 

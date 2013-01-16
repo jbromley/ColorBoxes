@@ -26,6 +26,12 @@ Shape::~Shape()
 }
 
 void
+Shape::update(long timeElapsed)
+{
+    
+}
+
+void
 Shape::render()
 {
     b2Vec2 worldCenter = body_->GetPosition();
@@ -89,12 +95,7 @@ Shape::makeBody(const b2Vec2 &center)
     bodyDef.position = engine_->coordPixelsToWorld(center);
     body_ = world->CreateBody(&bodyDef);
     
-//    b2PolygonShape box;
-//    box.SetAsBox(engine_->scalarPixelsToWorld(width),
-//                 engine_->scalarPixelsToWorld(height));
-    
-    b2Shape* shape = makeShape(center);
-    
+    b2Shape* shape = makeShape();    
     b2FixtureDef fixtureDef;
     fixtureDef.shape = shape;
     fixtureDef.density = 1.0;
