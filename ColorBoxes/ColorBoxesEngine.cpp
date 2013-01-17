@@ -248,7 +248,7 @@ ColorBoxesEngine::keyDown(int keyCode)
 {
     switch (keyCode) {
         case SDLK_a:
-            currentShape_ = ++currentShape_;
+	    currentShape_ = static_cast<ObjectShape>(static_cast<int>(currentShape_) + 1);
             if (currentShape_ == NUMBER_OBJECT_SHAPES) {
                 currentShape_ = TRIANGLE;
             }
