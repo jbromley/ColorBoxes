@@ -8,8 +8,9 @@
 
 #include <Box2D/Box2D.h>
 #include "Wall.h"
-#include "ColorBoxesEngine.h"
+#include "OpenGLDraw.h"
 #include "Utilities.h"
+#include "ColorBoxesEngine.h"
 
 
 /**
@@ -55,22 +56,12 @@ Wall::render()
     float x2 = x_ + w_ - 1;
     float y2 = y_ + h_ - 1;
 
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor4f(fillColor_.r, fillColor_.g, fillColor_.b, fillColor_.a);
-    glBegin(GL_TRIANGLE_FAN);
-    glVertex2f(x_, y_);
-    glVertex2f(x_, y2);
-    glVertex2f(x2, y2);
-    glVertex2f(x2, y_);
-    glEnd();
-    glDisable(GL_BLEND);
+    b2Vec2 vertices[] = {
+        b2Vec2(x_, y_),
+        b2Vec2(x_, y2),
+        b2Vec2(x2, y2),
+        b2Vec2(x2, y_)
+    };
     
-    glColor4f(borderColor_.r, borderColor_.g, borderColor_.b, borderColor_.a);
-    glBegin(GL_LINE_LOOP);
-    glVertex2f(x_, y_);
-    glVertex2f(x_, y2);
-    glVertex2f(x2, y2);
-    glVertex2f(x2, y_);
-    glEnd();
+    ogl::drawSolidPolygon(vertices, 4, borderColor_, fillColor_);
 }

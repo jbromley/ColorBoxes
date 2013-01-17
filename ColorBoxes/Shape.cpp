@@ -8,6 +8,7 @@
 
 #include "Shape.h"
 #include "Utilities.h"
+#include "OpenGLDraw.h"
 #include "ColorBoxesEngine.h"
 
 
@@ -34,42 +35,24 @@ Shape::update(long timeElapsed)
 void
 Shape::render()
 {
+    const int MAX_VERTICES = 16;
+    
     b2Vec2 worldCenter = body_->GetPosition();
     float32 theta = body_->GetAngle();
     b2Transform t;
     t.Set(worldCenter, theta);
     
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable(GL_LINE_SMOOTH);
-    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
-    glEnable(GL_POLYGON_SMOOTH);
-    glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
-    glColor4f(fillColor_.r, fillColor_.g, fillColor_.b, fillColor_.a);
-    
-    // Draw the vertices.
+    // Calculate the vertices.
     const b2Fixture* fixture = body_->GetFixtureList();
     const b2PolygonShape* polygon = dynamic_cast<const b2PolygonShape*>(fixture->GetShape());
     
-    b2Vec2* vertices = new b2Vec2[numVertices_];
-    glBegin(GL_TRIANGLE_FAN);
+    b2Vec2 vertices[MAX_VERTICES];
     for (int i = 0; i < polygon->m_vertexCount; ++i) {
         vertices[i] = engine_->coordWorldToPixels(b2Mul(t, polygon->m_vertices[i]));
-        glVertex2f(vertices[i].x, vertices[i].y);
     }
-    glEnd();
-    glDisable(GL_BLEND);
-    
-    glColor4f(borderColor_.r, borderColor_.g, borderColor_.b, borderColor_.a);
-    glBegin(GL_LINE_LOOP);
-    for (int i = 0; i < polygon->m_vertexCount; ++i) {
-        glVertex2f(vertices[i].x, vertices[i].y);
-    }
-    glEnd();
-    glDisable(GL_LINE_SMOOTH);
-    glDisable(GL_POLYGON_SMOOTH);
-    
-    delete [] vertices;
+
+    // Draw.
+    ogl::drawSolidPolygon(vertices, polygon->m_vertexCount, borderColor_, fillColor_);
 }
 
 bool

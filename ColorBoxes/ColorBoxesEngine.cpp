@@ -10,6 +10,7 @@
 #include <functional>
 #include <sstream>
 #include "ColorBoxesEngine.h"
+#include "OpenGLDraw.h"
 #include "Utilities.h"
 #include "Wall.h"
 #include "Circle.h"
@@ -70,7 +71,7 @@ ColorBoxesEngine::ColorBoxesEngine(int w, int h, const char* resourcePath)
     }
     
     std::string fontPath = std::string(resourcePath) + "/Arial.ttf";
-    font_ = TTF_OpenFont(fontPath.c_str(), 16);
+    font_ = TTF_OpenFont(fontPath.c_str(), 12);
     if (font_ == NULL) {
         std::cerr << "SDL_ttf error: " << TTF_GetError() << std::endl;
     } else {
@@ -174,7 +175,8 @@ ColorBoxesEngine::renderStatistics()
 {
     std::ostringstream msg;
     msg << objects_.size() << " objects, " << fps() << " fps";
-    renderText(msg.str(), 8.0f, 2.0f);
+//    renderText(msg.str(), 8.0f, 2.0f);
+    ogl::drawString(8.0f, 16.0f, msg.str(), GLColor(0.9f, 0.6f, 0.6f, 0.6f));
 }
 
 void

@@ -7,6 +7,7 @@
 //
 #include "Edge.h"
 #include "ColorBoxesEngine.h"
+#include "OpenGLDraw.h"
 
 
 Edge::Edge(const b2Vec2& pt1, const b2Vec2& pt2, const GLColor& color, ColorBoxesEngine* engine)
@@ -56,14 +57,5 @@ Edge::makeBody(const b2Vec2& pt1, const b2Vec2& pt2)
 
 void Edge::render()
 {
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glLineWidth(2.5);
-    glColor4f(color_.r, color_.g, color_.b, color_.a);
-    glBegin(GL_LINES);
-    glVertex2f(startPt_.x, startPt_.y);
-    glVertex2f(endPt_.x, endPt_.y);
-    glEnd();
-    glLineWidth(1.0);
-    glDisable(GL_BLEND);
+    ogl::drawSegment(startPt_, endPt_, 3.0f, color_);
 }

@@ -33,6 +33,8 @@
 		69F6848716A52C4C00B28B18 /* Shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F6848516A52C4C00B28B18 /* Shape.cpp */; };
 		69F6848F16A5510E00B28B18 /* Polygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F6848D16A5510E00B28B18 /* Polygon.cpp */; };
 		69F6849A16A6996A00B28B18 /* Circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F6849816A6996A00B28B18 /* Circle.cpp */; };
+		69F684A216A7E74A00B28B18 /* OpenGLDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F684A016A7E74A00B28B18 /* OpenGLDraw.cpp */; };
+		69F684A416A7ED1B00B28B18 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F684A316A7ED1B00B28B18 /* GLUT.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -88,6 +90,9 @@
 		69F6848E16A5510E00B28B18 /* Polygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polygon.h; sourceTree = "<group>"; };
 		69F6849816A6996A00B28B18 /* Circle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Circle.cpp; sourceTree = "<group>"; };
 		69F6849916A6996A00B28B18 /* Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circle.h; sourceTree = "<group>"; };
+		69F684A016A7E74A00B28B18 /* OpenGLDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLDraw.cpp; sourceTree = "<group>"; };
+		69F684A116A7E74A00B28B18 /* OpenGLDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLDraw.h; sourceTree = "<group>"; };
+		69F684A316A7ED1B00B28B18 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +107,7 @@
 				6924151E168D29A000046D84 /* SDL_gfx.framework in Frameworks */,
 				69F31345168D6BDA00F113DC /* SDL_ttf.framework in Frameworks */,
 				69F31365168E3F7B00F113DC /* OpenGL.framework in Frameworks */,
+				69F684A416A7ED1B00B28B18 /* GLUT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +117,7 @@
 		692414CF168CE5BB00046D84 = {
 			isa = PBXGroup;
 			children = (
+				69F684A316A7ED1B00B28B18 /* GLUT.framework */,
 				692414E3168CE5BC00046D84 /* ColorBoxes */,
 				692414DE168CE5BC00046D84 /* Frameworks */,
 				692414DC168CE5BC00046D84 /* Products */,
@@ -182,6 +189,8 @@
 				69241513168CFAD300046D84 /* Wall.cpp */,
 				69F68483169E959900B28B18 /* Edge.h */,
 				69F68482169E959900B28B18 /* Edge.cpp */,
+				69F684A116A7E74A00B28B18 /* OpenGLDraw.h */,
+				69F684A016A7E74A00B28B18 /* OpenGLDraw.cpp */,
 				69F31367168E426B00F113DC /* GLColor.h */,
 				69F31366168E426B00F113DC /* GLColor.cpp */,
 				69F31356168D985F00F113DC /* Utilities.h */,
@@ -267,6 +276,7 @@
 				69F6848716A52C4C00B28B18 /* Shape.cpp in Sources */,
 				69F6848F16A5510E00B28B18 /* Polygon.cpp in Sources */,
 				69F6849A16A6996A00B28B18 /* Circle.cpp in Sources */,
+				69F684A216A7E74A00B28B18 /* OpenGLDraw.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
