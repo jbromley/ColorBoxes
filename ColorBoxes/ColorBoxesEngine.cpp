@@ -176,7 +176,7 @@ ColorBoxesEngine::renderStatistics()
     std::ostringstream msg;
     msg << objects_.size() << " objects, " << fps() << " fps";
 //    renderText(msg.str(), 8.0f, 2.0f);
-    ogl::drawString(8.0f, 16.0f, msg.str(), GLColor(0.9f, 0.6f, 0.6f, 0.6f));
+    ogl::drawString(8.0f, 16.0f, msg.str(), textColor_);
 }
 
 void
