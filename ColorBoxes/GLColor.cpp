@@ -71,6 +71,12 @@ GLColor::red()
 }
 
 GLColor
+GLColor::orange()
+{
+    static GLColor orangeInstance(1.0f, 0.5f, 0.0f, 1.0f);
+    return orangeInstance;
+}
+GLColor
 GLColor::green()
 {
     static GLColor greenInstance(0.0f, 1.0f, 0.0f, 1.0f);
