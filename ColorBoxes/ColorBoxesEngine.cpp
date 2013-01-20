@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <functional>
 #include <sstream>
+#include <AntTweakBar.h>
 #include "ColorBoxesEngine.h"
 #include "OpenGLDraw.h"
 #include "Utilities.h"
@@ -17,8 +18,69 @@
 #include "Polygon.h"
 #include "Box.h"
 #include "Edge.h"
+#include "Cursors.h"
 
 
+// AntTweakBar helpers
+
+static void TW_CALL
+getObjectCount(void* value, void* clientData)
+{
+    *static_cast<unsigned long*>(value) = static_cast<const ColorBoxesEngine*>(clientData)->objectCount();
+}
+
+static void TW_CALL
+getFps(void* value, void* clientData)
+{
+    *static_cast<int*>(value) = static_cast<const ColorBoxesEngine*>(clientData)->fps();
+}
+
+static void TW_CALL
+getGravityStrength(void* value, void* clientData)
+{
+    b2Vec2 gravity = static_cast<ColorBoxesEngine*>(clientData)->world()->GetGravity();
+    *static_cast<float*>(value) = gravity.Length();
+}
+
+static void TW_CALL
+setGravityStrength(const void* value, void* clientData)
+{
+    float strength = *static_cast<const float*>(value);
+    b2Vec2 gravity = static_cast<ColorBoxesEngine*>(clientData)->world()->GetGravity();
+    float length = gravity.Normalize();
+    if (length == 0.0f) {
+        gravity = b2Vec2(0, -1.0f);
+    }
+    gravity *= strength;
+    static_cast<ColorBoxesEngine*>(clientData)->world()->SetGravity(gravity);
+}
+
+static void TW_CALL
+getGravityDirection(void* value, void* clientData)
+{
+    b2Vec2 gravity = static_cast<ColorBoxesEngine*>(clientData)->world()->GetGravity();
+    *static_cast<float*>(value) = atan2f(gravity.y, gravity.x) * 180.0f / M_PI;
+}
+
+static void TW_CALL
+setGravityDirection(const void* value, void* clientData)
+{
+    float angle = *static_cast<const float*>(value) * M_PI / 180.0f;
+    b2Vec2 gravity = static_cast<ColorBoxesEngine*>(clientData)->world()->GetGravity();
+    float strength = gravity.Length();
+    gravity = b2Vec2(cosf(angle), sinf(angle));
+    gravity *= strength;
+    static_cast<ColorBoxesEngine*>(clientData)->world()->SetGravity(gravity);
+}
+
+static void TW_CALL
+resetWorldObjects(void* clientData)
+{
+    static_cast<ColorBoxesEngine*>(clientData)->resetWorld();
+}
+
+
+// Functional delete helpers
 void deleteDoneShapes(Shape*& box)
 {
     if (box->done()) {
@@ -33,7 +95,6 @@ void deleteAll(T*& object)
     delete object;
     object = 0;
 }
-
 
 template void deleteAll<Edge>(Edge*&);
 template void deleteAll<Shape>(Shape*&);
@@ -52,15 +113,19 @@ ColorBoxesEngine::ColorBoxesEngine(int w, int h, const char* resourcePath)
       currentShape_(TRIANGLE),
       createObjects_(false),
       renderStats_(false),
+      gravity_(b2Vec2(0, -10.0f)),
       scaleFactor_(10.0f),
       yFlip_(-1.0f),
       newEdge_(NULL),
-      textColor_(GLColor::white())
+      textColor_(GLColor::white()),
+      defaultCursor_(defaultCursor())
 {
+    // Set the cursor.
+    SDL_SetCursor(defaultCursor_);
+    
     // Set up Box2D world.
-    b2Vec2 gravity(0.0f, -10.0f);
     bool doSleep = true;
-    world_ = new b2World(gravity);
+    world_ = new b2World(gravity_);
     world_->SetAllowSleeping(doSleep);
     world_->SetWarmStarting(true);
     world_->SetContinuousPhysics(true);
@@ -78,6 +143,9 @@ ColorBoxesEngine::ColorBoxesEngine(int w, int h, const char* resourcePath)
         TTF_SetFontStyle(font_, TTF_STYLE_BOLD);
     }
     
+    // Set up AntTweakBar
+    configureTweakBar();
+    
     ColorBoxesEngine::self = this;
 }
 
@@ -85,9 +153,44 @@ ColorBoxesEngine::~ColorBoxesEngine()
 {
     delete world_;
 
+    SDL_FreeCursor(defaultCursor_);
+    TwTerminate();
+    
     TTF_CloseFont(font_);
     TTF_Quit();
     SDL_Quit();
+}
+
+void
+ColorBoxesEngine::configureTweakBar()
+{
+    TwInit(TW_OPENGL, NULL);
+    TwWindowSize(width(), height());
+    TwBar* tweakBar = TwNewBar("Color Boxes");
+    TwDefine("GLOBAL help='Adjust Color Boxes parameters and perform commands.'");
+    TwAddVarCB(tweakBar, "Objects", TW_TYPE_UINT32, NULL, getObjectCount, this, "");
+    TwAddVarCB(tweakBar, "FPS", TW_TYPE_INT32, NULL, getFps, this, "");
+    TwAddSeparator(tweakBar, "gravitySeparator", "");
+    TwAddButton(tweakBar, "Gravity", NULL, NULL, "");
+    TwAddVarCB(tweakBar, "Strength", TW_TYPE_FLOAT, setGravityStrength,
+               getGravityStrength, this, "min=0 max=100 step=1.0");
+    TwAddVarCB(tweakBar, "Direction", TW_TYPE_FLOAT, setGravityDirection,
+               getGravityDirection, this, "min=-180 max=180 step=1.0");
+    TwAddSeparator(tweakBar, "paramSeparator", "");
+    TwEnumVal shapeEnumValues[] = {
+        {TRIANGLE, "Triangle"},
+        {QUADRILATERAL, "Quadrilateral"},
+        {PENTAGON, "Pentagon"},
+        {HEXAGON, "Hexagon"},
+        {HEPTAGON, "Heptagon"},
+        {OCTAGON, "Octagon"},
+        {CIRCLE, "Circle"},
+        {BOX, "Box"}
+    };
+    TwType shapeType = TwDefineEnum("ShapeType", shapeEnumValues, NUMBER_OBJECT_SHAPES);
+    TwAddVarRW(tweakBar, "Shape", shapeType, &currentShape_, NULL);
+    TwAddButton(tweakBar, "Reset", resetWorldObjects, this, "");
+
 }
 
 void
@@ -157,6 +260,7 @@ ColorBoxesEngine::update(long elapsedTime)
 void
 ColorBoxesEngine::render()
 {
+    TwDraw();
     for_each(walls_.begin(), walls_.end(), std::mem_fun(&Wall::render));
     for_each(objects_.begin(), objects_.end(), std::mem_fun(&Shape::render));
     for_each(edges_.begin(), edges_.end(), std::mem_fun(&Edge::render));
@@ -315,6 +419,12 @@ ColorBoxesEngine::mouseButtonUp(int button, int x, int y, int dx, int dy)
     if (button == SDL_BUTTON_LEFT) {
         createObjects_ = false;
     }
+}
+
+unsigned long
+ColorBoxesEngine::objectCount() const
+{
+    return objects_.size();
 }
 
 b2World*

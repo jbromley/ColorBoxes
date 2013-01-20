@@ -1,5 +1,6 @@
 #include "GameEngine.h"
 #include <iostream>
+#include <AntTweakBar.h>
 
 
 GameEngine::GameEngine(int width, int height, const std::string& resourcePath)
@@ -117,56 +118,59 @@ void GameEngine::handleInput()
     // Poll for events, and handle the ones we care about.
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
-        switch (event.type)
-        {
-            case SDL_KEYDOWN:
-                // If escape is pressed set the Quit-flag
-                if (event.key.keysym.sym == SDLK_ESCAPE)
-                {
+        int handled = TwEventSDL(&event, SDL_MAJOR_VERSION, SDL_MINOR_VERSION);
+        if (!handled) {
+            switch (event.type)
+            {
+                case SDL_KEYDOWN:
+                    // If escape is pressed set the Quit-flag
+                    if (event.key.keysym.sym == SDLK_ESCAPE)
+                    {
+                        quit_ = true;
+                        break;
+                    }
+                    
+                    keyDown(event.key.keysym.sym);
+                    break;
+                    
+                case SDL_KEYUP:
+                    keyUp(event.key.keysym.sym);
+                    break;
+                    
+                case SDL_QUIT:
                     quit_ = true;
                     break;
-                }
-                
-                keyDown(event.key.keysym.sym);
-                break;
-                
-            case SDL_KEYUP:
-                keyUp(event.key.keysym.sym);
-                break;
-                
-            case SDL_QUIT:
-                quit_ = true;
-                break;
-                
-            case SDL_MOUSEMOTION:
-                mouseMoved(event.button.button,
-                           event.motion.x, event.motion.y,
-                           event.motion.xrel, event.motion.yrel);
-                break;
-                
-            case SDL_MOUSEBUTTONUP:
-                mouseButtonUp(event.button.button,
-                              event.motion.x, event.motion.y,
-                              event.motion.xrel, event.motion.yrel);
-                break;
-                
-            case SDL_MOUSEBUTTONDOWN:
-                mouseButtonDown(event.button.button,
-                                event.motion.x, event.motion.y,
-                                event.motion.xrel, event.motion.yrel);
-                break;
-                
-            case SDL_ACTIVEEVENT:
-                if (event.active.state & SDL_APPACTIVE) {
-                    if (event.active.gain) {
-                        minimized_ = false;
-                        windowActive();
-                    } else {
-                        minimized_ = true;
-                        windowInactive();
+                    
+                case SDL_MOUSEMOTION:
+                    mouseMoved(event.button.button,
+                               event.motion.x, event.motion.y,
+                               event.motion.xrel, event.motion.yrel);
+                    break;
+                    
+                case SDL_MOUSEBUTTONUP:
+                    mouseButtonUp(event.button.button,
+                                  event.motion.x, event.motion.y,
+                                  event.motion.xrel, event.motion.yrel);
+                    break;
+                    
+                case SDL_MOUSEBUTTONDOWN:
+                    mouseButtonDown(event.button.button,
+                                    event.motion.x, event.motion.y,
+                                    event.motion.xrel, event.motion.yrel);
+                    break;
+                    
+                case SDL_ACTIVEEVENT:
+                    if (event.active.state & SDL_APPACTIVE) {
+                        if (event.active.gain) {
+                            minimized_ = false;
+                            windowActive();
+                        } else {
+                            minimized_ = true;
+                            windowInactive();
+                        }
                     }
-                }
-                break;
+                    break;
+            }
         }
     }
 }

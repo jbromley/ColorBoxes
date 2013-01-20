@@ -40,6 +40,9 @@ public:
     virtual void mouseButtonDown(int button, int x, int y, int dx, int dy);
     virtual void mouseButtonUp(int button, int x, int y, int dx, int dy);
     
+    unsigned long objectCount() const;
+    void resetWorld();
+
     b2World* world();
     b2Vec2 coordWorldToPixels(const b2Vec2& v);
     b2Vec2 coordWorldToPixels(float worldX, float worldY);
@@ -63,9 +66,9 @@ private:
         NUMBER_OBJECT_SHAPES
     };
     
+    void configureTweakBar();
     void renderStatistics();
     void renderText(const std::string& text, float x, float y);
-    void resetWorld();
     
     static ColorBoxesEngine* self;
     
@@ -78,6 +81,7 @@ private:
     bool renderStats_;
     
     b2World* world_;
+    b2Vec2 gravity_;
     float scaleFactor_;
     float yFlip_;
 
@@ -85,6 +89,8 @@ private:
       
     TTF_Font* font_;
     GLColor textColor_;
+    
+    SDL_Cursor* defaultCursor_;
 };
 
 

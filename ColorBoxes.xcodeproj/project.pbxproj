@@ -17,6 +17,9 @@
 		6924151C168D20CD00046D84 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6924151B168D20CD00046D84 /* Utilities.cpp */; };
 		6924151E168D29A000046D84 /* SDL_gfx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6924151D168D29A000046D84 /* SDL_gfx.framework */; };
 		69241525168D2F6300046D84 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69241524168D2F6300046D84 /* SDL.framework */; };
+		69CBA70B16A91F27001BD087 /* Cursors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CBA70916A91F27001BD087 /* Cursors.cpp */; };
+		69CBA70E16A94749001BD087 /* libAntTweakBar.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 69CBA70D16A94748001BD087 /* libAntTweakBar.dylib */; };
+		69CBA70F16A94756001BD087 /* libAntTweakBar.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69CBA70D16A94748001BD087 /* libAntTweakBar.dylib */; };
 		69F3133D168D699000F113DC /* SDL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69241524168D2F6300046D84 /* SDL.framework */; };
 		69F3133E168D699300F113DC /* SDL_gfx.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6924151D168D29A000046D84 /* SDL_gfx.framework */; };
 		69F31345168D6BDA00F113DC /* SDL_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F31344168D6BDA00F113DC /* SDL_ttf.framework */; };
@@ -44,6 +47,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				69CBA70F16A94756001BD087 /* libAntTweakBar.dylib in CopyFiles */,
 				69F68481169E957100B28B18 /* libBox2D.2.2.1.dylib in CopyFiles */,
 				69F3133D168D699000F113DC /* SDL.framework in CopyFiles */,
 				69F3133E168D699300F113DC /* SDL_gfx.framework in CopyFiles */,
@@ -71,6 +75,9 @@
 		6924151B168D20CD00046D84 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		6924151D168D29A000046D84 /* SDL_gfx.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_gfx.framework; path = /opt/local/Library/Frameworks/SDL_gfx.framework; sourceTree = "<absolute>"; };
 		69241524168D2F6300046D84 /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = /opt/local/Library/Frameworks/SDL.framework; sourceTree = "<absolute>"; };
+		69CBA70916A91F27001BD087 /* Cursors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cursors.cpp; sourceTree = "<group>"; };
+		69CBA70A16A91F27001BD087 /* Cursors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cursors.h; sourceTree = "<group>"; };
+		69CBA70D16A94748001BD087 /* libAntTweakBar.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libAntTweakBar.dylib; path = /opt/local/lib/libAntTweakBar.dylib; sourceTree = "<absolute>"; };
 		69F31344168D6BDA00F113DC /* SDL_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_ttf.framework; path = /opt/local/Library/Frameworks/SDL_ttf.framework; sourceTree = "<absolute>"; };
 		69F31347168D6C8700F113DC /* Arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Arial.ttf; sourceTree = "<group>"; };
 		69F3134E168D97CD00F113DC /* Box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Box.cpp; sourceTree = "<group>"; };
@@ -100,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69CBA70E16A94749001BD087 /* libAntTweakBar.dylib in Frameworks */,
 				69F68480169E955800B28B18 /* libBox2D.2.2.1.dylib in Frameworks */,
 				692414E0168CE5BC00046D84 /* Foundation.framework in Frameworks */,
 				692414E2168CE5BC00046D84 /* Cocoa.framework in Frameworks */,
@@ -136,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				69F6847F169E955800B28B18 /* libBox2D.2.2.1.dylib */,
+				69CBA70D16A94748001BD087 /* libAntTweakBar.dylib */,
 				69241524168D2F6300046D84 /* SDL.framework */,
 				6924151D168D29A000046D84 /* SDL_gfx.framework */,
 				69F31344168D6BDA00F113DC /* SDL_ttf.framework */,
@@ -191,6 +200,8 @@
 				69F68482169E959900B28B18 /* Edge.cpp */,
 				69F684A116A7E74A00B28B18 /* OpenGLDraw.h */,
 				69F684A016A7E74A00B28B18 /* OpenGLDraw.cpp */,
+				69CBA70916A91F27001BD087 /* Cursors.cpp */,
+				69CBA70A16A91F27001BD087 /* Cursors.h */,
 				69F31367168E426B00F113DC /* GLColor.h */,
 				69F31366168E426B00F113DC /* GLColor.cpp */,
 				69F31356168D985F00F113DC /* Utilities.h */,
@@ -277,6 +288,7 @@
 				69F6848F16A5510E00B28B18 /* Polygon.cpp in Sources */,
 				69F6849A16A6996A00B28B18 /* Circle.cpp in Sources */,
 				69F684A216A7E74A00B28B18 /* OpenGLDraw.cpp in Sources */,
+				69CBA70B16A91F27001BD087 /* Cursors.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
