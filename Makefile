@@ -8,6 +8,7 @@ OBJS =	GameEngine.o \
 	Box.o \
 	GLColor.o \
 	OpenGLDraw.o \
+	Cursors.o \
 	Utilities.o \
 	Wall.o \
 	Edge.o \
@@ -16,7 +17,7 @@ OUTPUT = colorboxes
 
 CXX = g++
 CXXFLAGS = -ggdb -D_GNU_SOURCE=1 -D_REENTRANT -IColorBoxes -I/usr/include
-LDFLAGS = -L/usr/lib -l SDL_ttf -lSDL -lpthread -lGL -lGLU -lglut -lBox2D
+LDFLAGS = -L/usr/lib -l SDL_ttf -lSDL -lpthread -lGL -lGLU -lglut -lBox2D -lAntTweakBar
 
 ${OUTPUT}: ${OBJS}
 	${CXX} ${LDFLAGS} ${OBJS} -o ${OUTPUT}
