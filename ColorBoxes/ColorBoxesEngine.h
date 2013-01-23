@@ -66,27 +66,39 @@ private:
         NUMBER_OBJECT_SHAPES
     };
     
+    enum State {
+        NORMAL,
+        CREATE_OBJECT,
+        CREATE_EDGE,
+        DELETE_EDGE,
+        NUMBER_STATES
+    };
+    
+    static const float SELECTION_THRESHOLD;
+    static const GLColor SELECTION_COLOR;
+    static const GLColor EDGE_COLOR;
+    static ColorBoxesEngine* self;
+
     void configureTweakBar();
     void renderStatistics();
     void renderText(const std::string& text, float x, float y);
     
-    static ColorBoxesEngine* self;
     
     std::vector<Wall*> walls_;
     std::vector<Shape*> objects_;
     std::vector<Edge*> edges_;
     
+    State state_;
     ObjectShape currentShape_;
-    bool createObjects_;
+    Edge* newEdge_;
+    Edge* selectedEdge_;
     bool renderStats_;
     
     b2World* world_;
     b2Vec2 gravity_;
     float scaleFactor_;
     float yFlip_;
-
-    Edge* newEdge_;
-      
+    
     TTF_Font* font_;
     GLColor textColor_;
     

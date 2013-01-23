@@ -99,7 +99,9 @@ void deleteAll(T*& object)
 template void deleteAll<Edge>(Edge*&);
 template void deleteAll<Shape>(Shape*&);
 
-
+const float ColorBoxesEngine::SELECTION_THRESHOLD = 10.0f;
+const GLColor ColorBoxesEngine::SELECTION_COLOR = GLColor(1.0f, 0.0f, 0.0f, 1.0f);
+const GLColor ColorBoxesEngine::EDGE_COLOR = GLColor::magenta().lighten(0.75f);
 ColorBoxesEngine* ColorBoxesEngine::self = NULL;
 
 ColorBoxesEngine*
@@ -110,13 +112,14 @@ ColorBoxesEngine::instance()
 
 ColorBoxesEngine::ColorBoxesEngine(int w, int h, const char* resourcePath)
     : GameEngine(w, h, resourcePath),
+      state_(NORMAL),
       currentShape_(TRIANGLE),
-      createObjects_(false),
+      newEdge_(NULL),
+      selectedEdge_(NULL),
       renderStats_(false),
       gravity_(b2Vec2(0, -10.0f)),
       scaleFactor_(10.0f),
       yFlip_(-1.0f),
-      newEdge_(NULL),
       textColor_(GLColor::white()),
       defaultCursor_(defaultCursor())
 {
@@ -177,6 +180,16 @@ ColorBoxesEngine::configureTweakBar()
     TwAddVarCB(tweakBar, "Direction", TW_TYPE_FLOAT, setGravityDirection,
                getGravityDirection, this, "min=-180 max=180 step=1.0");
     TwAddSeparator(tweakBar, "paramSeparator", "");
+//    TwAddVarRW(tweakBar, "Scale", TW_TYPE_FLOAT, &scaleFactor_, "min=1.0 max=20.0 step=1.0");
+    TwEnumVal modeEnumValues[] = {
+        {NORMAL, "Normal"},
+        {CREATE_OBJECT, "Create objects"},
+        {CREATE_EDGE, "Create wall"},
+        {DELETE_EDGE, "Delete wall"}
+    };
+    TwType modeType = TwDefineEnum("ModeType", modeEnumValues, NUMBER_STATES);
+    TwAddVarRW(tweakBar, "Mode", modeType, &state_, NULL);
+    
     TwEnumVal shapeEnumValues[] = {
         {TRIANGLE, "Triangle"},
         {QUADRILATERAL, "Quadrilateral"},
@@ -211,7 +224,7 @@ ColorBoxesEngine::initializeData()
 void
 ColorBoxesEngine::update(long elapsedTime)
 {
-    const int32 velocityIterations = 6;
+    const int32 velocityIterations = 8;
     const int32 positionIterations = 2;
     float32 timeStep = elapsedTime / 1000.0f;
     
@@ -220,7 +233,7 @@ ColorBoxesEngine::update(long elapsedTime)
     SDL_GetMouseState(&x, &y);
 
     // Create an object if we are in create mode.
-    if (createObjects_) {
+    if (state_ == CREATE_OBJECT) {
         Shape* object = NULL;
         switch (currentShape_) {
             case TRIANGLE:
@@ -243,6 +256,24 @@ ColorBoxesEngine::update(long elapsedTime)
         }
         
         objects_.push_back(object);
+    } else if (state_ == DELETE_EDGE) {
+        // Calculate the closest edge within a threshold radius.
+        if (selectedEdge_) {
+            selectedEdge_->setColor(EDGE_COLOR);
+            selectedEdge_ = NULL;
+        }
+        b2Vec2 p(x, y);
+        float minDistance = std::numeric_limits<float>::max();
+        for (int i = 0; i < edges_.size(); ++i) {
+            float distance = pointToEdgeDistance(p, edges_[i]);
+            if (distance < SELECTION_THRESHOLD && distance < minDistance) {
+                minDistance = distance;
+                selectedEdge_ = edges_[i];
+            }
+        }
+        if (selectedEdge_ != NULL) {
+            selectedEdge_->setColor(SELECTION_COLOR);
+        }
     }
 
     // Update the new edge if we are in edge drawing mode.
@@ -367,6 +398,20 @@ ColorBoxesEngine::keyDown(int keyCode)
                 textColor_ = GLColor::white();
             }
             break;
+        case SDLK_d:
+            if (newEdge_ != NULL) {
+                delete newEdge_;
+                newEdge_ = NULL;
+            }
+            selectedEdge_ = NULL;
+            state_ = DELETE_EDGE;
+            break;
+        case SDLK_e:
+            if (state_ != CREATE_EDGE) {
+                state_ = CREATE_EDGE;
+                selectedEdge_ = NULL;
+            }
+            break;
         case SDLK_r:
             // Reset the world: clear boxes and edges.
             resetWorld();
@@ -379,6 +424,11 @@ ColorBoxesEngine::keyDown(int keyCode)
                 delete newEdge_;
                 newEdge_ = NULL;
             }
+            if (selectedEdge_ != NULL) {
+                selectedEdge_->setColor(EDGE_COLOR);
+                selectedEdge_ = NULL;
+            }
+            state_ = NORMAL;
             break;
         default:
             // Do nothing.
@@ -396,19 +446,34 @@ void
 ColorBoxesEngine::mouseButtonDown(int button, int x, int y, int dx, int dy)
 {
     if (button == SDL_BUTTON_LEFT) {
-        createObjects_ = true;
-    } else if (button == SDL_BUTTON_RIGHT) {
-        if (newEdge_ == NULL) {
-            // Turn on draw edge mode and record the starting point.
-            b2Vec2 pt(x, y);
-            newEdge_ = new Edge(pt, pt, GLColor::cyan(), this);
-        } else {
-            // End draw edge mode and finalize the edge.
-            b2Vec2 endPt(x, y);
-            newEdge_->setEndPoint(endPt);
-            newEdge_->setColor(GLColor::magenta().lighten(0.75f));
-            edges_.push_back(newEdge_);
-            newEdge_ = NULL;
+        switch (state_) {
+            case NORMAL:
+                state_ = CREATE_OBJECT;
+                break;
+            case CREATE_EDGE:
+                if (newEdge_ == NULL) {
+                    // Turn on draw edge mode and record the starting point.
+                    b2Vec2 pt(x, y);
+                    newEdge_ = new Edge(pt, pt, GLColor::cyan(), this);
+                } else {
+                    // End draw edge mode and finalize the edge.
+                    b2Vec2 endPt(x, y);
+                    newEdge_->setEndPoint(endPt);
+                    newEdge_->setColor(EDGE_COLOR);
+                    edges_.push_back(newEdge_);
+                    newEdge_ = NULL;
+                    state_ = NORMAL;
+                }
+                break;
+            case DELETE_EDGE:
+                delete selectedEdge_;
+                edges_.erase(remove(edges_.begin(), edges_.end(), selectedEdge_), edges_.end());
+                selectedEdge_ = NULL;
+                state_ = NORMAL;
+                break;
+            default:
+                // Don't do anything.
+                break;
         }
     }
 }
@@ -416,8 +481,8 @@ ColorBoxesEngine::mouseButtonDown(int button, int x, int y, int dx, int dy)
 void
 ColorBoxesEngine::mouseButtonUp(int button, int x, int y, int dx, int dy)
 {
-    if (button == SDL_BUTTON_LEFT) {
-        createObjects_ = false;
+    if (state_ == CREATE_OBJECT && button == SDL_BUTTON_LEFT) {
+        state_ = NORMAL;
     }
 }
 

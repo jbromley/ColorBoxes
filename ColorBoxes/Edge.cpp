@@ -59,3 +59,23 @@ void Edge::render()
 {
     ogl::drawSegment(startPt_, endPt_, 3.0f, color_);
 }
+
+float pointToEdgeDistance(const b2Vec2& p, const Edge* edge)
+{
+    b2Vec2 ba(edge->endPt_);
+    ba -= edge->startPt_;
+    
+    b2Vec2 pa(p);
+    pa -= edge->startPt_;
+
+    b2Vec2 pb(p);
+    pb -= edge->endPt_;
+    
+    float distance = b2Cross(ba, pa) / ba.Length();
+    if (b2Dot(pb, ba) > 0.0) {
+        distance = pb.Length();
+    } else if (b2Dot(pa, ba) < 0.0) {
+        distance = pa.Length();
+    }
+    return fabsf(distance);
+}

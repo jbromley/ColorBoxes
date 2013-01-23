@@ -13,9 +13,9 @@
 #include <Box2D/Box2D.h>
 #include "GLColor.h"
 
-
 class ColorBoxesEngine;
 
+// Class declaration
 class Edge
 {
 public:
@@ -25,6 +25,8 @@ public:
     void setEndPoint(const b2Vec2& endPt);
     void setColor(const GLColor& color);
     void render();
+    
+    friend float pointToEdgeDistance(const b2Vec2&, const Edge*);
     
 private:
     void makeBody(const b2Vec2& pt1, const b2Vec2&pt2);
@@ -36,5 +38,9 @@ private:
     GLColor color_;
     ColorBoxesEngine* engine_;
 };
+
+// Helper functions
+float pointToEdgeDistance(const b2Vec2& pt, const Edge* edge);
+
 
 #endif /* defined(__ColorBoxes__Edge__) */
