@@ -71,6 +71,7 @@ private:
         CREATE_OBJECT,
         CREATE_EDGE,
         DELETE_EDGE,
+        CREATE_BOMB,
         NUMBER_STATES
     };
     
@@ -82,7 +83,7 @@ private:
     void configureTweakBar();
     void renderStatistics();
     void renderText(const std::string& text, float x, float y);
-    
+    void explode(const b2Vec2& point);
     
     std::vector<Wall*> walls_;
     std::vector<Shape*> objects_;

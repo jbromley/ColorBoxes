@@ -18,6 +18,7 @@
 #include "Polygon.h"
 #include "Box.h"
 #include "Edge.h"
+#include "ExplosionCallback.h"
 #include "Cursors.h"
 
 
@@ -99,6 +100,8 @@ void deleteAll(T*& object)
 template void deleteAll<Edge>(Edge*&);
 template void deleteAll<Shape>(Shape*&);
 
+
+// Static variables
 const float ColorBoxesEngine::SELECTION_THRESHOLD = 10.0f;
 const GLColor ColorBoxesEngine::SELECTION_COLOR = GLColor(1.0f, 0.0f, 0.0f, 1.0f);
 const GLColor ColorBoxesEngine::EDGE_COLOR = GLColor::magenta().lighten(0.75f);
@@ -185,7 +188,8 @@ ColorBoxesEngine::configureTweakBar()
         {NORMAL, "Normal"},
         {CREATE_OBJECT, "Create objects"},
         {CREATE_EDGE, "Create wall"},
-        {DELETE_EDGE, "Delete wall"}
+        {DELETE_EDGE, "Delete wall"},
+        {CREATE_BOMB, "Create bomb"}
     };
     TwType modeType = TwDefineEnum("ModeType", modeEnumValues, NUMBER_STATES);
     TwAddVarRW(tweakBar, "Mode", modeType, &state_, NULL);
@@ -390,6 +394,11 @@ ColorBoxesEngine::keyDown(int keyCode)
             std::cout << "Current shape: " << currentShape_ << std::endl;
             break;
         case SDLK_b:
+            if (state_ == NORMAL) {
+                state_ = CREATE_BOMB;
+            }
+            break;
+        case SDLK_c:
             if (backgroundColor() == GLColor::black()) {
                 setBackgroundColor(GLColor::white());
                 textColor_ = GLColor::black();
@@ -399,15 +408,13 @@ ColorBoxesEngine::keyDown(int keyCode)
             }
             break;
         case SDLK_d:
-            if (newEdge_ != NULL) {
-                delete newEdge_;
-                newEdge_ = NULL;
+            if (state_ == NORMAL) {
+                selectedEdge_ = NULL;
+                state_ = DELETE_EDGE;
             }
-            selectedEdge_ = NULL;
-            state_ = DELETE_EDGE;
             break;
         case SDLK_e:
-            if (state_ != CREATE_EDGE) {
+            if (state_ == NORMAL) {
                 state_ = CREATE_EDGE;
                 selectedEdge_ = NULL;
             }
@@ -471,6 +478,9 @@ ColorBoxesEngine::mouseButtonDown(int button, int x, int y, int dx, int dy)
                 selectedEdge_ = NULL;
                 state_ = NORMAL;
                 break;
+            case CREATE_BOMB:
+                explode(b2Vec2(x, y));
+                break;
             default:
                 // Don't do anything.
                 break;
@@ -490,6 +500,27 @@ unsigned long
 ColorBoxesEngine::objectCount() const
 {
     return objects_.size();
+}
+
+void
+ColorBoxesEngine::explode(const b2Vec2& pos)
+{
+    b2Vec2 worldPos = coordPixelsToWorld(pos);
+    
+    // Create the query AABB.
+    b2Vec2 diagonal(20, 20);
+    b2Vec2 lowerBound = worldPos;
+    lowerBound -= diagonal;
+    b2Vec2 upperBound = worldPos;
+    upperBound += diagonal;
+    
+    b2AABB bounds = {lowerBound, upperBound};
+
+    // Set the query callback.
+    ExplosionCallback explosion(worldPos);
+    world()->QueryAABB(&explosion, bounds);
+    
+    state_ = NORMAL;
 }
 
 b2World*
