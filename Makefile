@@ -6,6 +6,7 @@ OBJS =	GameEngine.o \
 	Polygon.o \
 	Circle.o \
 	Box.o \
+	ExplosionCallback.o \
 	GLColor.o \
 	OpenGLDraw.o \
 	Cursors.o \
