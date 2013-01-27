@@ -10,13 +10,13 @@
 #define __ColorBoxes__Circle__
 
 #include <iostream>
-#include "Shape.h"
+#include "PhysicsEntity.h"
 
 
 class ColorBoxesEngine;
 
 
-class Circle : public Shape
+class Circle : public PhysicsEntity
 {
 public:
     Circle(float x, float y, ColorBoxesEngine* engine);
@@ -24,7 +24,7 @@ public:
     virtual void render();
     
 protected:
-    virtual float shapeHeight() const;
+    virtual float boundingRadius() const;
     virtual b2Shape* makeShape();
     
 private:

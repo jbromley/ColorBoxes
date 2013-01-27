@@ -13,9 +13,9 @@
 
 
 Box::Box(float x, float y, ColorBoxesEngine* engine)
-: Shape(4, engine),
-  w_(randomFloat(2.0f, 16.0f)),
-  h_(randomFloat(4.0f, 16.0f))
+    : PhysicsEntity(4, engine),
+      w_(randomFloat(2.0f, 16.0f)),
+      h_(randomFloat(4.0f, 16.0f))
 {
     borderColor_ = GLColor::randomRGBColor();
     fillColor_ = borderColor_.lighten(0.5f);
@@ -27,9 +27,9 @@ Box::~Box()
 }
 
 float
-Box::shapeHeight() const
+Box::boundingRadius() const
 {
-    return w_ * h_;
+    return 0.5f * sqrt(w_ * w_ + h_ * h_);
 }
 
 b2Shape*

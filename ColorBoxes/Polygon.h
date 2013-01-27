@@ -10,20 +10,20 @@
 #define __ColorBoxes__Polygon__
 
 #include <iostream>
-#include "Shape.h"
+#include "PhysicsEntity.h"
 
 
 class ColorBoxesEngine;
 
 
-class Polygon : public Shape
+class Polygon : public PhysicsEntity
 {
 public:
     Polygon(float x, float y, int numVertices, ColorBoxesEngine* engine);
     virtual ~Polygon();
     
 protected:
-    virtual float shapeHeight() const;
+    virtual float boundingRadius() const;
     virtual b2Shape* makeShape();
     
 private:

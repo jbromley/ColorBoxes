@@ -11,20 +11,20 @@
 
 #include <iostream>
 #include <Box2D/Box2D.h>
-#include "Shape.h"
+#include "PhysicsEntity.h"
 #include "GLColor.h"
 
 
 class ColorBoxesEngine;
 
-class Box : public Shape
+class Box : public PhysicsEntity
 {
 public:
     Box(float x, float y, ColorBoxesEngine* engine);
     virtual ~Box();
     
 protected:
-    virtual float shapeHeight() const;
+    virtual float boundingRadius() const;
     virtual b2Shape* makeShape();
     
 private:    

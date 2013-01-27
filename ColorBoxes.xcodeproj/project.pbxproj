@@ -21,6 +21,7 @@
 		69CBA70E16A94749001BD087 /* libAntTweakBar.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 69CBA70D16A94748001BD087 /* libAntTweakBar.dylib */; };
 		69CBA70F16A94756001BD087 /* libAntTweakBar.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69CBA70D16A94748001BD087 /* libAntTweakBar.dylib */; };
 		69CBA71916B25105001BD087 /* ExplosionCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CBA71716B25104001BD087 /* ExplosionCallback.cpp */; };
+		69CBA71C16B5009C001BD087 /* PhysicsEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CBA71A16B5009A001BD087 /* PhysicsEntity.cpp */; };
 		69F3133D168D699000F113DC /* SDL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69241524168D2F6300046D84 /* SDL.framework */; };
 		69F3133E168D699300F113DC /* SDL_gfx.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6924151D168D29A000046D84 /* SDL_gfx.framework */; };
 		69F31345168D6BDA00F113DC /* SDL_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F31344168D6BDA00F113DC /* SDL_ttf.framework */; };
@@ -34,7 +35,6 @@
 		69F68480169E955800B28B18 /* libBox2D.2.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F6847F169E955800B28B18 /* libBox2D.2.2.1.dylib */; };
 		69F68481169E957100B28B18 /* libBox2D.2.2.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69F6847F169E955800B28B18 /* libBox2D.2.2.1.dylib */; };
 		69F68484169E959900B28B18 /* Edge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F68482169E959900B28B18 /* Edge.cpp */; };
-		69F6848716A52C4C00B28B18 /* Shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F6848516A52C4C00B28B18 /* Shape.cpp */; };
 		69F6848F16A5510E00B28B18 /* Polygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F6848D16A5510E00B28B18 /* Polygon.cpp */; };
 		69F6849A16A6996A00B28B18 /* Circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F6849816A6996A00B28B18 /* Circle.cpp */; };
 		69F684A216A7E74A00B28B18 /* OpenGLDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F684A016A7E74A00B28B18 /* OpenGLDraw.cpp */; };
@@ -81,6 +81,8 @@
 		69CBA70D16A94748001BD087 /* libAntTweakBar.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libAntTweakBar.dylib; path = /opt/local/lib/libAntTweakBar.dylib; sourceTree = "<absolute>"; };
 		69CBA71716B25104001BD087 /* ExplosionCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExplosionCallback.cpp; sourceTree = "<group>"; };
 		69CBA71816B25105001BD087 /* ExplosionCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplosionCallback.h; sourceTree = "<group>"; };
+		69CBA71A16B5009A001BD087 /* PhysicsEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicsEntity.cpp; sourceTree = "<group>"; };
+		69CBA71B16B5009B001BD087 /* PhysicsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsEntity.h; sourceTree = "<group>"; };
 		69F31344168D6BDA00F113DC /* SDL_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_ttf.framework; path = /opt/local/Library/Frameworks/SDL_ttf.framework; sourceTree = "<absolute>"; };
 		69F31347168D6C8700F113DC /* Arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Arial.ttf; sourceTree = "<group>"; };
 		69F3134E168D97CD00F113DC /* Box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Box.cpp; sourceTree = "<group>"; };
@@ -94,8 +96,6 @@
 		69F6847F169E955800B28B18 /* libBox2D.2.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBox2D.2.2.1.dylib; path = /opt/local/lib/libBox2D.2.2.1.dylib; sourceTree = "<absolute>"; };
 		69F68482169E959900B28B18 /* Edge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Edge.cpp; sourceTree = "<group>"; };
 		69F68483169E959900B28B18 /* Edge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Edge.h; sourceTree = "<group>"; };
-		69F6848516A52C4C00B28B18 /* Shape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shape.cpp; sourceTree = "<group>"; };
-		69F6848616A52C4C00B28B18 /* Shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shape.h; sourceTree = "<group>"; };
 		69F6848D16A5510E00B28B18 /* Polygon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Polygon.cpp; sourceTree = "<group>"; };
 		69F6848E16A5510E00B28B18 /* Polygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polygon.h; sourceTree = "<group>"; };
 		69F6849816A6996A00B28B18 /* Circle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Circle.cpp; sourceTree = "<group>"; };
@@ -189,10 +189,8 @@
 				69241507168CE79300046D84 /* GameEngine.cpp */,
 				6924150C168CE84300046D84 /* ColorBoxesEngine.h */,
 				6924150B168CE84300046D84 /* ColorBoxesEngine.cpp */,
-				69CBA71816B25105001BD087 /* ExplosionCallback.h */,
-				69CBA71716B25104001BD087 /* ExplosionCallback.cpp */,
-				69F6848616A52C4C00B28B18 /* Shape.h */,
-				69F6848516A52C4C00B28B18 /* Shape.cpp */,
+				69CBA71B16B5009B001BD087 /* PhysicsEntity.h */,
+				69CBA71A16B5009A001BD087 /* PhysicsEntity.cpp */,
 				69F3134F168D97CD00F113DC /* Box.h */,
 				69F3134E168D97CD00F113DC /* Box.cpp */,
 				69F6848E16A5510E00B28B18 /* Polygon.h */,
@@ -203,6 +201,8 @@
 				69241513168CFAD300046D84 /* Wall.cpp */,
 				69F68483169E959900B28B18 /* Edge.h */,
 				69F68482169E959900B28B18 /* Edge.cpp */,
+				69CBA71816B25105001BD087 /* ExplosionCallback.h */,
+				69CBA71716B25104001BD087 /* ExplosionCallback.cpp */,
 				69F684A116A7E74A00B28B18 /* OpenGLDraw.h */,
 				69F684A016A7E74A00B28B18 /* OpenGLDraw.cpp */,
 				69CBA70916A91F27001BD087 /* Cursors.cpp */,
@@ -289,12 +289,12 @@
 				69F31350168D97CE00F113DC /* Box.cpp in Sources */,
 				69F31368168E426B00F113DC /* GLColor.cpp in Sources */,
 				69F68484169E959900B28B18 /* Edge.cpp in Sources */,
-				69F6848716A52C4C00B28B18 /* Shape.cpp in Sources */,
 				69F6848F16A5510E00B28B18 /* Polygon.cpp in Sources */,
 				69F6849A16A6996A00B28B18 /* Circle.cpp in Sources */,
 				69F684A216A7E74A00B28B18 /* OpenGLDraw.cpp in Sources */,
 				69CBA70B16A91F27001BD087 /* Cursors.cpp in Sources */,
 				69CBA71916B25105001BD087 /* ExplosionCallback.cpp in Sources */,
+				69CBA71C16B5009C001BD087 /* PhysicsEntity.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

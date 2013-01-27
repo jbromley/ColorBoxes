@@ -82,11 +82,11 @@ resetWorldObjects(void* clientData)
 
 
 // Functional delete helpers
-void deleteDoneShapes(Shape*& box)
+void deleteDoneShapes(PhysicsEntity*& object)
 {
-    if (box->done()) {
-        delete box;
-        box = 0;
+    if (object->done()) {
+        delete object;
+        object = 0;
     }
 }
 
@@ -98,7 +98,7 @@ void deleteAll(T*& object)
 }
 
 template void deleteAll<Edge>(Edge*&);
-template void deleteAll<Shape>(Shape*&);
+template void deleteAll<PhysicsEntity>(PhysicsEntity*&);
 
 
 // Static variables
@@ -238,7 +238,7 @@ ColorBoxesEngine::update(long elapsedTime)
 
     // Create an object if we are in create mode.
     if (state_ == CREATE_OBJECT) {
-        Shape* object = NULL;
+        PhysicsEntity* object = NULL;
         switch (currentShape_) {
             case TRIANGLE:
             case QUADRILATERAL:
@@ -287,7 +287,8 @@ ColorBoxesEngine::update(long elapsedTime)
     
     // Clear out any objects that are off the screen.
     for_each(objects_.begin(), objects_.end(), deleteDoneShapes);
-    objects_.erase(std::remove(objects_.begin(), objects_.end(), static_cast<Shape*>(0)), objects_.end());
+    objects_.erase(std::remove(objects_.begin(), objects_.end(),
+                               static_cast<PhysicsEntity*>(0)), objects_.end());
     
     world_->Step(timeStep, velocityIterations, positionIterations);
 }
@@ -297,7 +298,7 @@ ColorBoxesEngine::render()
 {
     TwDraw();
     for_each(walls_.begin(), walls_.end(), std::mem_fun(&Wall::render));
-    for_each(objects_.begin(), objects_.end(), std::mem_fun(&Shape::render));
+    for_each(objects_.begin(), objects_.end(), std::mem_fun(&PhysicsEntity::render));
     for_each(edges_.begin(), edges_.end(), std::mem_fun(&Edge::render));
 
     if (newEdge_ != NULL) {
@@ -532,11 +533,13 @@ ColorBoxesEngine::world()
 void
 ColorBoxesEngine::resetWorld()
 {
-    for_each(objects_.begin(), objects_.end(), deleteAll<Shape>);
-    objects_.erase(std::remove(objects_.begin(), objects_.end(), static_cast<Shape*>(0)), objects_.end());
+    for_each(objects_.begin(), objects_.end(), deleteAll<PhysicsEntity>);
+    objects_.erase(std::remove(objects_.begin(), objects_.end(),
+                               static_cast<PhysicsEntity*>(0)), objects_.end());
     
     for_each(edges_.begin(), edges_.end(), deleteAll<Edge>);
-    edges_.erase(std::remove(edges_.begin(), edges_.end(), static_cast<Edge*>(0)), edges_.end());
+    edges_.erase(std::remove(edges_.begin(), edges_.end(),
+                             static_cast<Edge*>(0)), edges_.end());
 }
 
 b2Vec2

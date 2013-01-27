@@ -13,8 +13,8 @@
 
 
 Polygon::Polygon(float x, float y, int numVertices, ColorBoxesEngine* engine)
-: Shape(numVertices, engine),
-    radius_(randomFloat(2.0f, 16.0f))
+    : PhysicsEntity(numVertices, engine),
+      radius_(randomFloat(2.0f, 16.0f))
 {
     borderColor_ = GLColor::randomRGBColor();
     fillColor_ = borderColor_.lighten(0.5f);
@@ -26,9 +26,9 @@ Polygon::~Polygon()
 }
 
 float
-Polygon::shapeHeight() const
+Polygon::boundingRadius() const
 {
-    return 2.0f * radius_;
+    return radius_;
 }
 
 b2Shape*

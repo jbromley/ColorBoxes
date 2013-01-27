@@ -1,39 +1,39 @@
 //
-//  Shape.cpp
+//  PhysicsEntity.cpp
 //  ColorBoxes
 //
 //  Created by Jay Bromley on 1/14/13.
 //  Copyright (c) 2013 Jay Bromley. All rights reserved.
 //
 
-#include "Shape.h"
+#include "PhysicsEntity.h"
 #include "Utilities.h"
 #include "OpenGLDraw.h"
 #include "ColorBoxesEngine.h"
 
 
-Shape::Shape(int numVertices, ColorBoxesEngine* engine)
-: numVertices_(numVertices),
-    borderColor_(GLColor::randomColor()),
-    fillColor_(borderColor_.lighten(0.5f)),
-    engine_(engine)
+PhysicsEntity::PhysicsEntity(int numVertices, ColorBoxesEngine* engine)
+    : numVertices_(numVertices),
+      borderColor_(GLColor::randomColor()),
+      fillColor_(borderColor_.lighten(0.5f)),
+      engine_(engine)
 {
     
 }
 
-Shape::~Shape()
+PhysicsEntity::~PhysicsEntity()
 {
     body_->GetWorld()->DestroyBody(body_);
 }
 
 void
-Shape::update(long timeElapsed)
+PhysicsEntity::update(long timeElapsed)
 {
     
 }
 
 void
-Shape::render()
+PhysicsEntity::render()
 {
     const int MAX_VERTICES = 16;
     
@@ -56,12 +56,12 @@ Shape::render()
 }
 
 bool
-Shape::done() const
+PhysicsEntity::done() const
 {
     b2Vec2 worldPos = body_->GetPosition();
     b2Vec2 pixelPos = engine_->coordWorldToPixels(worldPos);
     
-    if (pixelPos.y > engine_->height() + shapeHeight()) {
+    if (pixelPos.y > engine_->height() + 2.0f * boundingRadius()) {
         return true;
     }
     
@@ -69,7 +69,7 @@ Shape::done() const
 }
 
 void
-Shape::makeBody(const b2Vec2 &center)
+PhysicsEntity::makeBody(const b2Vec2 &center)
 {
     b2World* world = engine_->world();
     
@@ -96,7 +96,7 @@ Shape::makeBody(const b2Vec2 &center)
 }
 
 void
-Shape::killBody()
+PhysicsEntity::killBody()
 {
     b2World* world = engine_->world();
     world->DestroyBody(body_);

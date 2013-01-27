@@ -19,7 +19,7 @@
 
 
 class Wall;
-class Shape;
+class PhysicsEntity;
 class Box;
 class Edge;
 
@@ -86,7 +86,7 @@ private:
     void explode(const b2Vec2& point);
     
     std::vector<Wall*> walls_;
-    std::vector<Shape*> objects_;
+    std::vector<PhysicsEntity*> objects_;
     std::vector<Edge*> edges_;
     
     State state_;

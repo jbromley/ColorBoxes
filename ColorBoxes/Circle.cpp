@@ -14,8 +14,8 @@
 
 
 Circle::Circle(float x, float y, ColorBoxesEngine* engine)
-: Shape(0, engine),
-    radius_(randomFloat(2.0f, 16.0f))
+    : PhysicsEntity(0, engine),
+      radius_(randomFloat(2.0f, 16.0f))
 {
     borderColor_ = GLColor::randomRGBColor();
     fillColor_ = borderColor_.lighten(0.5f);
@@ -36,7 +36,7 @@ Circle::render()
 }
 
 float
-Circle::shapeHeight() const
+Circle::boundingRadius() const
 {
     return 2.0f * radius_;
 }
