@@ -61,11 +61,7 @@ PhysicsEntity::done() const
     b2Vec2 worldPos = body_->GetPosition();
     b2Vec2 pixelPos = engine_->coordWorldToPixels(worldPos);
     
-    if (pixelPos.y > engine_->height() + 2.0f * boundingRadius()) {
-        return true;
-    }
-    
-    return false;
+    return (pixelPos.y > engine_->height() + boundingRadius() + 1.0f);
 }
 
 void

@@ -22,9 +22,9 @@ public:
     PhysicsEntity(int numVertices, ColorBoxesEngine* engine);
     virtual ~PhysicsEntity();
     
-    virtual void update(long timeElapsed);
+    virtual void update(long millisElapsed);
     virtual void render();
-    bool done() const;
+    virtual bool done() const;
     
 protected:
     virtual float boundingRadius() const = 0;
