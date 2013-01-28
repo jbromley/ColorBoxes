@@ -2,10 +2,11 @@ SRC_DIRS = ColorBoxes
 VPATH = ${SRC_DIRS}
 OBJS =	GameEngine.o \
 	ColorBoxesEngine.o \
-	Shape.o \
+	PhysicsEntity.o \
 	Polygon.o \
 	Circle.o \
 	Box.o \
+	Bomb.o \
 	ExplosionCallback.o \
 	GLColor.o \
 	OpenGLDraw.o \
