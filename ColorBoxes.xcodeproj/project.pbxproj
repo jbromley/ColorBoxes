@@ -22,6 +22,7 @@
 		69CBA70F16A94756001BD087 /* libAntTweakBar.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69CBA70D16A94748001BD087 /* libAntTweakBar.dylib */; };
 		69CBA71916B25105001BD087 /* ExplosionCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CBA71716B25104001BD087 /* ExplosionCallback.cpp */; };
 		69CBA71C16B5009C001BD087 /* PhysicsEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CBA71A16B5009A001BD087 /* PhysicsEntity.cpp */; };
+		69CBA71F16B5EB57001BD087 /* Bomb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CBA71D16B5EB56001BD087 /* Bomb.cpp */; };
 		69F3133D168D699000F113DC /* SDL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69241524168D2F6300046D84 /* SDL.framework */; };
 		69F3133E168D699300F113DC /* SDL_gfx.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6924151D168D29A000046D84 /* SDL_gfx.framework */; };
 		69F31345168D6BDA00F113DC /* SDL_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F31344168D6BDA00F113DC /* SDL_ttf.framework */; };
@@ -83,6 +84,8 @@
 		69CBA71816B25105001BD087 /* ExplosionCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplosionCallback.h; sourceTree = "<group>"; };
 		69CBA71A16B5009A001BD087 /* PhysicsEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicsEntity.cpp; sourceTree = "<group>"; };
 		69CBA71B16B5009B001BD087 /* PhysicsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsEntity.h; sourceTree = "<group>"; };
+		69CBA71D16B5EB56001BD087 /* Bomb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bomb.cpp; sourceTree = "<group>"; };
+		69CBA71E16B5EB56001BD087 /* Bomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bomb.h; sourceTree = "<group>"; };
 		69F31344168D6BDA00F113DC /* SDL_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_ttf.framework; path = /opt/local/Library/Frameworks/SDL_ttf.framework; sourceTree = "<absolute>"; };
 		69F31347168D6C8700F113DC /* Arial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Arial.ttf; sourceTree = "<group>"; };
 		69F3134E168D97CD00F113DC /* Box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Box.cpp; sourceTree = "<group>"; };
@@ -201,6 +204,8 @@
 				69241513168CFAD300046D84 /* Wall.cpp */,
 				69F68483169E959900B28B18 /* Edge.h */,
 				69F68482169E959900B28B18 /* Edge.cpp */,
+				69CBA71E16B5EB56001BD087 /* Bomb.h */,
+				69CBA71D16B5EB56001BD087 /* Bomb.cpp */,
 				69CBA71816B25105001BD087 /* ExplosionCallback.h */,
 				69CBA71716B25104001BD087 /* ExplosionCallback.cpp */,
 				69F684A116A7E74A00B28B18 /* OpenGLDraw.h */,
@@ -295,6 +300,7 @@
 				69CBA70B16A91F27001BD087 /* Cursors.cpp in Sources */,
 				69CBA71916B25105001BD087 /* ExplosionCallback.cpp in Sources */,
 				69CBA71C16B5009C001BD087 /* PhysicsEntity.cpp in Sources */,
+				69CBA71F16B5EB57001BD087 /* Bomb.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

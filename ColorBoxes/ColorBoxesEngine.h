@@ -83,7 +83,6 @@ private:
     void configureTweakBar();
     void renderStatistics();
     void renderText(const std::string& text, float x, float y);
-    void explode(const b2Vec2& point);
     
     std::vector<Wall*> walls_;
     std::vector<PhysicsEntity*> objects_;

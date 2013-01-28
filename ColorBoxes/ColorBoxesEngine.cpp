@@ -18,7 +18,7 @@
 #include "Polygon.h"
 #include "Box.h"
 #include "Edge.h"
-#include "ExplosionCallback.h"
+#include "Bomb.h"
 #include "Cursors.h"
 
 
@@ -290,6 +290,9 @@ ColorBoxesEngine::update(long elapsedTime)
     objects_.erase(std::remove(objects_.begin(), objects_.end(),
                                static_cast<PhysicsEntity*>(0)), objects_.end());
     
+    // Update the state of all objects and physics.
+    for_each(objects_.begin(), objects_.end(),
+             std::bind2nd(std::mem_fun(&PhysicsEntity::update), elapsedTime));
     world_->Step(timeStep, velocityIterations, positionIterations);
 }
 
@@ -480,7 +483,8 @@ ColorBoxesEngine::mouseButtonDown(int button, int x, int y, int dx, int dy)
                 state_ = NORMAL;
                 break;
             case CREATE_BOMB:
-                explode(b2Vec2(x, y));
+                objects_.push_back(new Bomb(x, y, 20.0f, 1000.0f, 3.0f, this));
+                state_ = NORMAL;
                 break;
             default:
                 // Don't do anything.
@@ -501,27 +505,6 @@ unsigned long
 ColorBoxesEngine::objectCount() const
 {
     return objects_.size();
-}
-
-void
-ColorBoxesEngine::explode(const b2Vec2& pos)
-{
-    b2Vec2 worldPos = coordPixelsToWorld(pos);
-    
-    // Create the query AABB.
-    b2Vec2 diagonal(20, 20);
-    b2Vec2 lowerBound = worldPos;
-    lowerBound -= diagonal;
-    b2Vec2 upperBound = worldPos;
-    upperBound += diagonal;
-    
-    b2AABB bounds = {lowerBound, upperBound};
-
-    // Set the query callback.
-    ExplosionCallback explosion(worldPos);
-    world()->QueryAABB(&explosion, bounds);
-    
-    state_ = NORMAL;
 }
 
 b2World*

@@ -16,13 +16,15 @@
 class ExplosionCallback : public b2QueryCallback
 {
 public:
-    ExplosionCallback(const b2Vec2& origin);
+    ExplosionCallback(const b2Vec2& origin, float blastRadius, float impulse);
     virtual ~ExplosionCallback();
 
     virtual bool ReportFixture(b2Fixture* fixture);
 
 private:
     b2Vec2 origin_;
+    float blastRadius_;
+    float impulse_;
 };
 
 #endif /* defined(__ColorBoxes__ExplosionCallback__) */

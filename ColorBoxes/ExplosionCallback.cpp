@@ -8,8 +8,10 @@
 
 #include "ExplosionCallback.h"
 
-ExplosionCallback::ExplosionCallback(const b2Vec2& origin)
-: origin_(origin)
+ExplosionCallback::ExplosionCallback(const b2Vec2& origin, float blastRadius, float impulse)
+: origin_(origin),
+  blastRadius_(blastRadius),
+  impulse_(impulse)
 {
 }
 
@@ -20,24 +22,30 @@ ExplosionCallback::~ExplosionCallback()
 bool
 ExplosionCallback::ReportFixture(b2Fixture* fixture)
 {
-    const float MAX_DISTANCE = 20.0f;
-    const float MAX_FORCE = 2000.0f;
-    
     b2Body* body = fixture->GetBody();
     b2Vec2 bodyPos = body->GetPosition();
-        
     float distance = b2Distance(bodyPos, origin_);
-    if (distance > MAX_DISTANCE) {
-        distance = MAX_DISTANCE - 0.01f;
+    if (distance == 0.0f) {
+        return true;
     }
     
-    float strength = (MAX_DISTANCE - distance) / MAX_DISTANCE;
-    float force = strength * MAX_FORCE;
-    float angle = atan2f(bodyPos.y - origin_.y, bodyPos.x - origin_.x);
-
+    // Linear fall-off explosion
+//    if (distance > blastRadius_) {
+//        distance = blastRadius_ - 0.01f;
+//    }
+//    
+//    float force = impulse_ * (blastRadius_ - distance) / blastRadius_;
+    
+    // 1/r^2 fall-off explosion.
+    float force = 4.0f * impulse_ / (distance * distance);
+    b2Vec2 hitVector(bodyPos);
+    hitVector -= origin_;
+    hitVector.Normalize();
+    
+    std::cout << force << std::endl;
+    
     // Apply an impulse to the body, using the angle.
-    body->ApplyLinearImpulse(b2Vec2(cosf(angle) * force, sinf(angle) * force),
-                             body->GetPosition());
+    body->ApplyLinearImpulse(force * hitVector, body->GetPosition());
 
     return true;
 }
