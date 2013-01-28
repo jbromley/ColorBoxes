@@ -32,7 +32,11 @@ Circle::render()
     b2Vec2 center = engine_->coordWorldToPixels(body_->GetPosition());
     b2Vec2 axis(cosf(body_->GetAngle()), sinf(body_->GetAngle()));
     
-    ogl::drawSolidCircle(center, radius_, axis, borderColor_, fillColor_);
+    ogl::drawSolidCircleAxis(center, radius_, axis, borderColor_, fillColor_);
+    
+    
+    
+    
 }
 
 float
