@@ -22,6 +22,8 @@ namespace ogl
                           const GLColor& borderColor, const GLColor& fillColor);
     void drawSolidCircle(const b2Vec2& center, float radius, const b2Vec2& axis,
                          const GLColor& borderColor, const GLColor& fillColor);
+    void drawSolidCircleAxis(const b2Vec2& center, float radius, const b2Vec2& axis,
+                             const GLColor& borderColor, const GLColor& fillColor);
     void drawSegment(const b2Vec2& p1, const b2Vec2& p2, float thickness,
                      const GLColor& color);
     void drawPoint(const b2Vec2& p, float32 size, const GLColor& color);

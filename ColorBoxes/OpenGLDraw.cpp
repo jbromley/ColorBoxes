@@ -66,6 +66,36 @@ namespace ogl
             theta += INCREMENT;
         }
         glEnd();
+    }
+    
+    void drawSolidCircleAxis(const b2Vec2& center, float radius, const b2Vec2& axis,
+                             const GLColor& borderColor, const GLColor& fillColor)
+    {
+        const float32 SEGMENTS = 16.0f;
+        const float32 INCREMENT = 2.0f * b2_pi / SEGMENTS;
+        
+        float32 theta = 0.0f;
+        glEnable(GL_BLEND);
+        glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glColor4f(fillColor.r, fillColor.g, fillColor.b, fillColor.a);
+        glBegin(GL_TRIANGLE_FAN);
+        for (int32 i = 0; i < SEGMENTS; ++i) {
+            b2Vec2 v = center + radius * b2Vec2(cosf(theta), sinf(theta));
+            glVertex2f(v.x, v.y);
+            theta += INCREMENT;
+        }
+        glEnd();
+        glDisable(GL_BLEND);
+        
+        theta = 0.0f;
+        glColor4f(borderColor.r, borderColor.g, borderColor.b, borderColor.a);
+        glBegin(GL_LINE_LOOP);
+        for (int32 i = 0; i < SEGMENTS; ++i)  {
+            b2Vec2 v = center + radius * b2Vec2(cosf(theta), sinf(theta));
+            glVertex2f(v.x, v.y);
+            theta += INCREMENT;
+        }
+        glEnd();
         
         b2Vec2 p = center + radius * axis;
         glBegin(GL_LINES);
