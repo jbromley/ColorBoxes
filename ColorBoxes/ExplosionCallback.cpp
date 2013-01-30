@@ -42,8 +42,6 @@ ExplosionCallback::ReportFixture(b2Fixture* fixture)
     hitVector -= origin_;
     hitVector.Normalize();
     
-    std::cout << force << std::endl;
-    
     // Apply an impulse to the body, using the angle.
     body->ApplyLinearImpulse(force * hitVector, body->GetPosition());
 
