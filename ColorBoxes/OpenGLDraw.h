@@ -12,6 +12,8 @@
 #include <iostream>
 #include <string>
 #include <Box2D/Box2D.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_ttf.h>
 #include "GLColor.h"
 
 
@@ -28,6 +30,7 @@ namespace ogl
                      const GLColor& color);
     void drawPoint(const b2Vec2& p, float32 size, const GLColor& color);
     void drawString(int x, int y, const std::string& text, const GLColor& color);
+    void drawStringTTF(const std::string &text, float x, float y, TTF_Font* font, const GLColor& color);
 };
 
 

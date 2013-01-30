@@ -7,12 +7,12 @@
 //
 
 #include "OpenGLDraw.h"
+#include "Utilities.h"
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
 #include "GL/freeglut.h"
 #endif
-#include <SDL/SDL.h>
 
 
 namespace ogl
@@ -156,5 +156,64 @@ namespace ogl
         glPopMatrix();
         glMatrixMode(GL_MODELVIEW);
     }
+    
+    void drawStringTTF(const std::string &text, float x, float y, TTF_Font* font, const GLColor& color)
+    {
+        // Use SDL_TTF to render the text onto an initial surface.
+        SDL_Surface* textSurface = TTF_RenderText_Blended(font, text.c_str(), color.toSDLColor());
+        
+        // Convert the rendered text to a known format.
+        int w = nextPowerOfTwo(textSurface->w);
+        int h = nextPowerOfTwo(textSurface->h);
+        
+        SDL_Surface* intermediary = SDL_CreateRGBSurface(SDL_HWSURFACE | SDL_SRCALPHA, w, h, 32,
+                                                         0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+        SDL_SetAlpha(textSurface, 0, 0);
+        SDL_BlitSurface(textSurface, NULL, intermediary, NULL);
+        
+        // Tell GL about our new texture.
+        GLuint texture;
+        glGenTextures(1, &texture);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glTexImage2D(GL_TEXTURE_2D, 0, 4, w, h, 0, GL_BGRA,
+                     GL_UNSIGNED_BYTE, intermediary->pixels );
+        
+        // GL_NEAREST looks horrible if scaled.
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        
+        // Prepare to render our texture.
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glColor4f(color.r, color.g, color.b, color.a);
+        
+        // Draw a quad at location.
+        glBegin(GL_QUADS);
+        // Recall that the origin is in the lower-left corner. That is why the
+        // TexCoords specify different corners than the Vertex coors seem to.
+        glTexCoord2f(0.0f, 0.0f);
+        glVertex2f(x, y);
+        glTexCoord2f(1.0f, 0.0f);
+        glVertex2f(x + w, y);
+        glTexCoord2f(1.0f, 1.0f);
+        glVertex2f(x + w, y + h);
+        glTexCoord2f(0.0f, 1.0f);
+        glVertex2f(x, y + h);
+        glEnd();
+        
+        // Bad things happen if we delete the texture before it finishes.
+        glFinish();
+        glDisable(GL_TEXTURE_2D);
+        glDisable(GL_BLEND);
+        
+        // Clean up.
+        SDL_FreeSurface(intermediary);
+        SDL_FreeSurface(textSurface);
+        glDeleteTextures(1, &texture);
+    }
+
     
 }
