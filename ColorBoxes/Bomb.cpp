@@ -53,10 +53,15 @@ Bomb::render()
     
     std::ostringstream s;
     s << static_cast<int>(ceilf(countdown_));
-    char c = s.str()[0];
-    float charWidth = glutBitmapWidth(GLUT_BITMAP_8_BY_13, c);
+    
+    int w = 0;
+    int h = 0;
+    TTF_SizeText(engine_->font(), s.str().c_str(), &w, &h);
     ogl::drawSolidCircle(center, radius_, axis, borderColor_, fillColor_);
-    ogl::drawString(center.x - charWidth / 2.0f, center.y + 4, s.str(), GLColor::white());
+//    ogl::drawString(center.x - w / 2.0f, center.y - h / 2.0f, s.str(), GLColor::white());
+    ogl::drawStringTTF(s.str(), center.x - w / 2.0f, center.y - h / 2.0f,
+                       engine_->font(), GLColor::white());
+                    
 }
 
 bool
