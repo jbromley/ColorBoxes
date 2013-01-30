@@ -57,7 +57,7 @@ Edge::makeBody(const b2Vec2& pt1, const b2Vec2& pt2)
 
 void Edge::render()
 {
-    ogl::drawSegment(startPt_, endPt_, 3.0f, color_);
+    ogl::drawSegment(startPt_, endPt_, 2.0f, color_);
 }
 
 float pointToEdgeDistance(const b2Vec2& p, const Edge* edge)
