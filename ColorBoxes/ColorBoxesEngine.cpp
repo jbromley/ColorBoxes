@@ -318,8 +318,8 @@ ColorBoxesEngine::renderStatistics()
 {
     std::ostringstream msg;
     msg << objects_.size() << " objects, " << fps() << " fps";
-//    renderText(msg.str(), 8.0f, 2.0f);
-    ogl::drawString(8.0f, 16.0f, msg.str(), textColor_);
+    renderText(msg.str(), 8.0f, 2.0f);
+//    ogl::drawString(8.0f, 16.0f, msg.str(), textColor_);
 }
 
 void
@@ -580,6 +580,12 @@ float
 ColorBoxesEngine::scaleFactor() const
 {
     return scaleFactor_;
+}
+
+TTF_Font*
+ColorBoxesEngine::font() const
+{
+    return font_;
 }
 
 

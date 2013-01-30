@@ -52,6 +52,7 @@ public:
     float scalarPixelsToWorld(float val);
     
     float scaleFactor() const;
+    TTF_Font* font() const;
     
 private:
     enum ObjectShape {
