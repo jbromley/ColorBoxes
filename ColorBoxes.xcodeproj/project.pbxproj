@@ -19,22 +19,22 @@
 		69241525168D2F6300046D84 /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69241524168D2F6300046D84 /* SDL.framework */; };
 		69CBA70B16A91F27001BD087 /* Cursors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CBA70916A91F27001BD087 /* Cursors.cpp */; };
 		69CBA70E16A94749001BD087 /* libAntTweakBar.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 69CBA70D16A94748001BD087 /* libAntTweakBar.dylib */; };
-		69CBA70F16A94756001BD087 /* libAntTweakBar.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69CBA70D16A94748001BD087 /* libAntTweakBar.dylib */; };
+		69CBA70F16A94756001BD087 /* libAntTweakBar.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69CBA70D16A94748001BD087 /* libAntTweakBar.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		69CBA71916B25105001BD087 /* ExplosionCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CBA71716B25104001BD087 /* ExplosionCallback.cpp */; };
 		69CBA71C16B5009C001BD087 /* PhysicsEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CBA71A16B5009A001BD087 /* PhysicsEntity.cpp */; };
 		69CBA71F16B5EB57001BD087 /* Bomb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69CBA71D16B5EB56001BD087 /* Bomb.cpp */; };
-		69F3133D168D699000F113DC /* SDL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69241524168D2F6300046D84 /* SDL.framework */; };
-		69F3133E168D699300F113DC /* SDL_gfx.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6924151D168D29A000046D84 /* SDL_gfx.framework */; };
+		69F3133D168D699000F113DC /* SDL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69241524168D2F6300046D84 /* SDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		69F3133E168D699300F113DC /* SDL_gfx.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6924151D168D29A000046D84 /* SDL_gfx.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		69F31345168D6BDA00F113DC /* SDL_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F31344168D6BDA00F113DC /* SDL_ttf.framework */; };
-		69F31346168D6BF500F113DC /* SDL_ttf.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69F31344168D6BDA00F113DC /* SDL_ttf.framework */; };
+		69F31346168D6BF500F113DC /* SDL_ttf.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69F31344168D6BDA00F113DC /* SDL_ttf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		69F31348168D6C8700F113DC /* Arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69F31347168D6C8700F113DC /* Arial.ttf */; };
 		69F31350168D97CE00F113DC /* Box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F3134E168D97CD00F113DC /* Box.cpp */; };
 		69F3135E168D9F4100F113DC /* README in Resources */ = {isa = PBXBuildFile; fileRef = 69F3135D168D9F4100F113DC /* README */; };
 		69F31365168E3F7B00F113DC /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F31364168E3F7B00F113DC /* OpenGL.framework */; };
 		69F31368168E426B00F113DC /* GLColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F31366168E426B00F113DC /* GLColor.cpp */; };
 		69F31377168EBF6900F113DC /* ColorBoxes.icns in Resources */ = {isa = PBXBuildFile; fileRef = 69F31376168EBF6900F113DC /* ColorBoxes.icns */; };
-		69F68480169E955800B28B18 /* libBox2D.2.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F6847F169E955800B28B18 /* libBox2D.2.2.1.dylib */; };
-		69F68481169E957100B28B18 /* libBox2D.2.2.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69F6847F169E955800B28B18 /* libBox2D.2.2.1.dylib */; };
+		69F68480169E955800B28B18 /* libBox2D.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 69F6847F169E955800B28B18 /* libBox2D.dylib */; };
+		69F68481169E957100B28B18 /* libBox2D.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 69F6847F169E955800B28B18 /* libBox2D.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		69F68484169E959900B28B18 /* Edge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F68482169E959900B28B18 /* Edge.cpp */; };
 		69F6848F16A5510E00B28B18 /* Polygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F6848D16A5510E00B28B18 /* Polygon.cpp */; };
 		69F6849A16A6996A00B28B18 /* Circle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69F6849816A6996A00B28B18 /* Circle.cpp */; };
@@ -50,7 +50,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				69CBA70F16A94756001BD087 /* libAntTweakBar.dylib in CopyFiles */,
-				69F68481169E957100B28B18 /* libBox2D.2.2.1.dylib in CopyFiles */,
+				69F68481169E957100B28B18 /* libBox2D.dylib in CopyFiles */,
 				69F3133D168D699000F113DC /* SDL.framework in CopyFiles */,
 				69F3133E168D699300F113DC /* SDL_gfx.framework in CopyFiles */,
 				69F31346168D6BF500F113DC /* SDL_ttf.framework in CopyFiles */,
@@ -96,7 +96,7 @@
 		69F31366168E426B00F113DC /* GLColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLColor.cpp; sourceTree = "<group>"; };
 		69F31367168E426B00F113DC /* GLColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLColor.h; sourceTree = "<group>"; };
 		69F31376168EBF6900F113DC /* ColorBoxes.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ColorBoxes.icns; sourceTree = SOURCE_ROOT; };
-		69F6847F169E955800B28B18 /* libBox2D.2.2.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBox2D.2.2.1.dylib; path = /opt/local/lib/libBox2D.2.2.1.dylib; sourceTree = "<absolute>"; };
+		69F6847F169E955800B28B18 /* libBox2D.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBox2D.dylib; path = /opt/local/lib/libBox2D.dylib; sourceTree = "<absolute>"; };
 		69F68482169E959900B28B18 /* Edge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Edge.cpp; sourceTree = "<group>"; };
 		69F68483169E959900B28B18 /* Edge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Edge.h; sourceTree = "<group>"; };
 		69F6848D16A5510E00B28B18 /* Polygon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Polygon.cpp; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				69CBA70E16A94749001BD087 /* libAntTweakBar.dylib in Frameworks */,
-				69F68480169E955800B28B18 /* libBox2D.2.2.1.dylib in Frameworks */,
+				69F68480169E955800B28B18 /* libBox2D.dylib in Frameworks */,
 				692414E0168CE5BC00046D84 /* Foundation.framework in Frameworks */,
 				692414E2168CE5BC00046D84 /* Cocoa.framework in Frameworks */,
 				69241525168D2F6300046D84 /* SDL.framework in Frameworks */,
@@ -148,7 +148,7 @@
 		692414DE168CE5BC00046D84 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				69F6847F169E955800B28B18 /* libBox2D.2.2.1.dylib */,
+				69F6847F169E955800B28B18 /* libBox2D.dylib */,
 				69CBA70D16A94748001BD087 /* libAntTweakBar.dylib */,
 				69241524168D2F6300046D84 /* SDL.framework */,
 				6924151D168D29A000046D84 /* SDL_gfx.framework */,
@@ -247,7 +247,7 @@
 		692414D1168CE5BC00046D84 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Jay Bromley";
 			};
 			buildConfigurationList = 692414D4168CE5BC00046D84 /* Build configuration list for PBXProject "ColorBoxes" */;
@@ -322,7 +322,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -355,7 +354,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -380,6 +378,7 @@
 		692414F8168CE5BD00046D84 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ColorBoxes\"",
@@ -402,6 +401,7 @@
 		692414F9168CE5BD00046D84 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ColorBoxes\"",

@@ -43,7 +43,7 @@ ExplosionCallback::ReportFixture(b2Fixture* fixture)
     hitVector.Normalize();
     
     // Apply an impulse to the body, using the angle.
-    body->ApplyLinearImpulse(force * hitVector, body->GetPosition());
+    body->ApplyLinearImpulse(force * hitVector, body->GetPosition(), true);
 
     return true;
 }
