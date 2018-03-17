@@ -50,11 +50,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				69CBA70F16A94756001BD087 /* libAntTweakBar.dylib in CopyFiles */,
-<<<<<<< HEAD
-				69F68481169E957100B28B18 /* libBox2D.dylib in CopyFiles */,
-=======
 				69F68481169E957100B28B18 /* libBox2D.2.3.0.dylib in CopyFiles */,
->>>>>>> 7b69d5a... Updated for new version of Box2D.
 				69F3133D168D699000F113DC /* SDL.framework in CopyFiles */,
 				69F3133E168D699300F113DC /* SDL_gfx.framework in CopyFiles */,
 				69F31346168D6BF500F113DC /* SDL_ttf.framework in CopyFiles */,
@@ -100,11 +96,7 @@
 		69F31366168E426B00F113DC /* GLColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLColor.cpp; sourceTree = "<group>"; };
 		69F31367168E426B00F113DC /* GLColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLColor.h; sourceTree = "<group>"; };
 		69F31376168EBF6900F113DC /* ColorBoxes.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ColorBoxes.icns; sourceTree = SOURCE_ROOT; };
-<<<<<<< HEAD
-		69F6847F169E955800B28B18 /* libBox2D.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBox2D.dylib; path = /opt/local/lib/libBox2D.dylib; sourceTree = "<absolute>"; };
-=======
 		69F6847F169E955800B28B18 /* libBox2D.2.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBox2D.2.3.0.dylib; path = /opt/local/lib/libBox2D.2.3.0.dylib; sourceTree = "<absolute>"; };
->>>>>>> 7b69d5a... Updated for new version of Box2D.
 		69F68482169E959900B28B18 /* Edge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Edge.cpp; sourceTree = "<group>"; };
 		69F68483169E959900B28B18 /* Edge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Edge.h; sourceTree = "<group>"; };
 		69F6848D16A5510E00B28B18 /* Polygon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Polygon.cpp; sourceTree = "<group>"; };
@@ -122,11 +114,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				69CBA70E16A94749001BD087 /* libAntTweakBar.dylib in Frameworks */,
-<<<<<<< HEAD
-				69F68480169E955800B28B18 /* libBox2D.dylib in Frameworks */,
-=======
 				69F68480169E955800B28B18 /* libBox2D.2.3.0.dylib in Frameworks */,
->>>>>>> 7b69d5a... Updated for new version of Box2D.
 				692414E0168CE5BC00046D84 /* Foundation.framework in Frameworks */,
 				692414E2168CE5BC00046D84 /* Cocoa.framework in Frameworks */,
 				69241525168D2F6300046D84 /* SDL.framework in Frameworks */,
@@ -160,11 +148,7 @@
 		692414DE168CE5BC00046D84 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				69F6847F169E955800B28B18 /* libBox2D.dylib */,
-=======
 				69F6847F169E955800B28B18 /* libBox2D.2.3.0.dylib */,
->>>>>>> 7b69d5a... Updated for new version of Box2D.
 				69CBA70D16A94748001BD087 /* libAntTweakBar.dylib */,
 				69241524168D2F6300046D84 /* SDL.framework */,
 				6924151D168D29A000046D84 /* SDL_gfx.framework */,
