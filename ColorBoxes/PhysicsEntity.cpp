@@ -47,12 +47,12 @@ PhysicsEntity::render()
     const b2PolygonShape* polygon = dynamic_cast<const b2PolygonShape*>(fixture->GetShape());
     
     b2Vec2 vertices[MAX_VERTICES];
-    for (int i = 0; i < polygon->GetVertexCount(); ++i) {
+    for (int i = 0; i < polygon->m_count; ++i) {
         vertices[i] = engine_->coordWorldToPixels(b2Mul(t, polygon->m_vertices[i]));
     }
 
     // Draw.
-    ogl::drawSolidPolygon(vertices, polygon->GetVertexCount(), borderColor_, fillColor_);
+    ogl::drawSolidPolygon(vertices, polygon->m_count, borderColor_, fillColor_);
 }
 
 bool
