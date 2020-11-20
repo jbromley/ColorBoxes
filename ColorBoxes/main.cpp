@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 {
     glutInit(&argc, argv);
     const char *resourcePath = "./ColorBoxes";
-    ColorBoxesEngine* game = new ColorBoxesEngine(1680, 1050, resourcePath);
+    ColorBoxesEngine* game = new ColorBoxesEngine(1920, 1080, resourcePath);
     game->init();
     int status = game->run();
 
